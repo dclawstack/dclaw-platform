@@ -162,8 +162,8 @@ Architecture decisions must be logged in `dclaw-prd/DECISIONS.md` (or created if
 - [x] dpanel-api — Go service reading K8s ConfigMap, Dockerfile
 
 ### In Progress / Next
-- [ ] Deploy `dpanel-api` to K8s cluster with RBAC
-- [ ] Wire DPanel frontend to live `dpanel-api` (set `NEXT_PUBLIC_DPANEL_API_URL`)
+- [x] Deploy `dpanel-api` to K8s cluster with RBAC
+- [x] Wire DPanel frontend to live `dpanel-api` (set `NEXT_PUBLIC_DPANEL_API_URL`)
 - [ ] Operator database reconciliation (CloudNativePG integration)
 - [ ] Apple Developer cert for signed Tauri builds
 - [ ] Agent swarm web chat backbone (this document)
