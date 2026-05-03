@@ -1,0 +1,23 @@
+name: TEST-01 Pipeline Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'TEST-01/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Telegram Notification
+        run: |
+          curl -s -X POST https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage \
+            -d "chat_id=${{ secrets.TELEGRAM_META_CHANNEL }}" \
+            -d "text=TEST-01 PASSED%0A%0ACommit: ${{ github.sha }}%0ARepo: ${{ github.repository }}%0AAuthor: ${{ github.actor }}%0A%0APipeline is LIVE." \
+            -d "parse_mode=HTML"
+      
+      - name: Echo Success
+        run: echo "TEST-01 Pipeline validation complete"
