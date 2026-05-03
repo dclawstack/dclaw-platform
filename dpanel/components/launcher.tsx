@@ -145,7 +145,7 @@ export function Launcher() {
       {/* Footer */}
       <div className="mt-12 text-xs text-zinc-600 flex flex-col items-center gap-1">
         <span>
-          DClaw Platform v0.1.0 — {liveCount} of {apps.length} apps live
+          DClaw Platform © 2026 — {liveCount} of {apps.length} apps live
         </span>
         {installedCount > 0 && (
           <span className="text-zinc-500">
