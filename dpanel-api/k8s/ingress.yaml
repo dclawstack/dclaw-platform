@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dpanel-api
+  namespace: dclaw-core
+  labels:
+    app.kubernetes.io/name: dpanel-api
+    app.kubernetes.io/part-of: dclaw-platform
+    app.kubernetes.io/component: api
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: dpanel-api
+                port:
+                  number: 8080

@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: dpanel-api
+  namespace: dclaw-core
+  labels:
+    app.kubernetes.io/name: dpanel-api
+    app.kubernetes.io/part-of: dclaw-platform
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: dpanel-api
+  namespace: dclaw-core
+  labels:
+    app.kubernetes.io/name: dpanel-api
+    app.kubernetes.io/part-of: dclaw-platform
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dpanel-api
+  namespace: dclaw-core
+  labels:
+    app.kubernetes.io/name: dpanel-api
+    app.kubernetes.io/part-of: dclaw-platform
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: dpanel-api
+subjects:
+  - kind: ServiceAccount
+    name: dpanel-api
+    namespace: dclaw-core
