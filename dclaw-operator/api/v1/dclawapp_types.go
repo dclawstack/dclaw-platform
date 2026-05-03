@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"k8s.io/apimachinery/pkg/runtime"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -112,6 +113,67 @@ type DClawAppStatus struct {
 // +kubebuilder:printcolumn:name="Phase",type=string,JSONPath=`.status.phase`
 // +kubebuilder:printcolumn:name="Age",type=date,JSONPath=`.metadata.creationTimestamp`
 
+// DeepCopyInto copies all properties of this object into another object of the same type.
+func (in *DClawAppSpec) DeepCopyInto(out *DClawAppSpec) {
+	*out = *in
+	out.Frontend = in.Frontend
+	out.Backend = in.Backend
+	out.Database = in.Database
+	out.Ingress = in.Ingress
+	out.Resources = in.Resources
+	if in.Frontend.Env != nil {
+		in, out := &in.Frontend.Env, &out.Frontend.Env
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+	if in.Backend.Env != nil {
+		in, out := &in.Backend.Env, &out.Backend.Env
+		*out = make(map[string]string, len(*in))
+		for key, val := range *in {
+			(*out)[key] = val
+		}
+	}
+}
+
+// DeepCopy creates a new DClawAppSpec.
+func (in *DClawAppSpec) DeepCopy() *DClawAppSpec {
+	if in == nil {
+		return nil
+	}
+	out := new(DClawAppSpec)
+	in.DeepCopyInto(out)
+	return out
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type.
+func (in *DClawAppStatus) DeepCopyInto(out *DClawAppStatus) {
+	*out = *in
+	if in.Conditions != nil {
+		in, out := &in.Conditions, &out.Conditions
+		*out = make([]metav1.Condition, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+	if in.LastUpdated != nil {
+		in, out := &in.LastUpdated, &out.LastUpdated
+		*out = new(metav1.Time)
+		(*in).DeepCopyInto(*out)
+	}
+}
+
+// DeepCopy creates a new DClawAppStatus.
+func (in *DClawAppStatus) DeepCopy() *DClawAppStatus {
+	if in == nil {
+		return nil
+	}
+	out := new(DClawAppStatus)
+	in.DeepCopyInto(out)
+	return out
+}
+
 // DClawApp is the Schema for the dclawapps API
 type DClawApp struct {
 	metav1.TypeMeta   `json:",inline"`
@@ -121,6 +183,33 @@ type DClawApp struct {
 	Status DClawAppStatus `json:"status,omitempty"`
 }
 
+// DeepCopyInto copies all properties of this object into another object of the same type.
+func (in *DClawApp) DeepCopyInto(out *DClawApp) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ObjectMeta.DeepCopyInto(&out.ObjectMeta)
+	in.Spec.DeepCopyInto(&out.Spec)
+	in.Status.DeepCopyInto(&out.Status)
+}
+
+// DeepCopyObject returns a generically typed copy of an object.
+func (in *DClawApp) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopy creates a new DClawApp.
+func (in *DClawApp) DeepCopy() *DClawApp {
+	if in == nil {
+		return nil
+	}
+	out := new(DClawApp)
+	in.DeepCopyInto(out)
+	return out
+}
+
 // +kubebuilder:object:root=true
 
 // DClawAppList contains a list of DClawApp
@@ -128,4 +217,36 @@ type DClawAppList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
 	Items           []DClawApp `json:"items"`
+}
+
+// DeepCopyInto copies all properties of this object into another object of the same type.
+func (in *DClawAppList) DeepCopyInto(out *DClawAppList) {
+	*out = *in
+	out.TypeMeta = in.TypeMeta
+	in.ListMeta.DeepCopyInto(&out.ListMeta)
+	if in.Items != nil {
+		in, out := &in.Items, &out.Items
+		*out = make([]DClawApp, len(*in))
+		for i := range *in {
+			(*in)[i].DeepCopyInto(&(*out)[i])
+		}
+	}
+}
+
+// DeepCopyObject returns a generically typed copy of an object.
+func (in *DClawAppList) DeepCopyObject() runtime.Object {
+	if c := in.DeepCopy(); c != nil {
+		return c
+	}
+	return nil
+}
+
+// DeepCopy creates a new DClawAppList.
+func (in *DClawAppList) DeepCopy() *DClawAppList {
+	if in == nil {
+		return nil
+	}
+	out := new(DClawAppList)
+	in.DeepCopyInto(out)
+	return out
 }
