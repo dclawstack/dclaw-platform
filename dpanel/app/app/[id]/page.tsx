@@ -1,6 +1,7 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
   ArrowLeft,
@@ -11,19 +12,47 @@ import {
   Sparkles,
   Tag,
   GitBranch,
+  Loader2,
 } from "lucide-react";
-import { apps } from "@/lib/apps";
+import { type App } from "@/lib/apps";
+import { fetchAppById } from "@/lib/api";
 import { useInstall } from "@/components/install-context";
 
 export default function AppDetailPage() {
   const params = useParams();
-  const router = useRouter();
   const { install, uninstall, isInstalled } = useInstall();
 
   const appId = params.id as string;
-  const app = apps.find((a) => a.id === appId);
+  const [app, setApp] = useState<App | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
-  if (!app) {
+  useEffect(() => {
+    let mounted = true;
+    fetchAppById(appId).then((data) => {
+      if (!mounted) return;
+      if (data) {
+        setApp(data);
+      } else {
+        setNotFound(true);
+      }
+      setLoading(false);
+    });
+    return () => {
+      mounted = false;
+    };
+  }, [appId]);
+
+  if (loading) {
+    return (
+      <main className="flex flex-1 flex-col items-center justify-center py-12 px-6">
+        <Loader2 className="w-8 h-8 text-zinc-500 animate-spin" />
+        <p className="text-zinc-500 mt-3 text-sm">Loading app details...</p>
+      </main>
+    );
+  }
+
+  if (notFound || !app) {
     return (
       <main className="flex flex-1 flex-col items-center justify-center py-12 px-6">
         <div className="text-center">
@@ -65,7 +94,7 @@ export default function AppDetailPage() {
             className="w-20 h-20 rounded-2xl flex items-center justify-center shrink-0"
             style={{ backgroundColor: app.bgColor }}
           >
-            <Icon className="w-10 h-10" style={{ color: app.color }} />
+            {Icon && <Icon className="w-10 h-10" style={{ color: app.color }} />}
           </div>
 
           <div className="flex-1 min-w-0">

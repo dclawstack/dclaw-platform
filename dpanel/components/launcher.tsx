@@ -1,14 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Search, Sparkles, Download, ExternalLink } from "lucide-react";
-import { apps } from "@/lib/apps";
+import { Search, Sparkles, Download, ExternalLink, Loader2 } from "lucide-react";
+import { type App } from "@/lib/apps";
+import { fetchApps } from "@/lib/api";
 import { useInstall } from "@/components/install-context";
 
 export function Launcher() {
   const [query, setQuery] = useState("");
+  const [apps, setApps] = useState<App[]>([]);
+  const [loading, setLoading] = useState(true);
   const { isInstalled } = useInstall();
+
+  useEffect(() => {
+    let mounted = true;
+    fetchApps().then((data) => {
+      if (mounted) {
+        setApps(data);
+        setLoading(false);
+      }
+    });
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   const filtered = apps.filter(
     (app) =>
@@ -44,6 +60,14 @@ export function Launcher() {
           className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-700 transition-all"
         />
       </div>
+
+      {/* Loading */}
+      {loading && (
+        <div className="flex items-center gap-2 text-zinc-500 mb-8">
+          <Loader2 className="w-4 h-4 animate-spin" />
+          Loading apps...
+        </div>
+      )}
 
       {/* App Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 w-full">
@@ -112,7 +136,7 @@ export function Launcher() {
       </div>
 
       {/* Empty state */}
-      {filtered.length === 0 && (
+      {filtered.length === 0 && !loading && (
         <div className="text-zinc-500 text-sm mt-8">
           No apps match &ldquo;{query}&rdquo;
         </div>
