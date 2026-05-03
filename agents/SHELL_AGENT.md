@@ -118,6 +118,20 @@ https://raw.githubusercontent.com/dclawstack/dclaw-platform/main/AGENT_SWARM.md
 - **GitHub CLI:** `gh` (authenticated as `t4tarzan`)
 - **Vercel CLI:** `vercel` (authenticated, DClawstack team)
 
+## Port Registry
+
+Before starting ANY dev server, check `~/DClaw-Stack/dclaw-platform/PORT_REGISTRY.md`.  
+**Busy ports on this system:** 80, 443, 5000, 5002, 5200, 5300, 5310, 5432, 6443, 7000, 8000, 8080, 9090, 9093, 10010, 10248-10259, 11434, 3001, 30080, and many others.
+
+**DClaw assigned ports:**
+- DPanel dev: `3000`
+- Chat frontend dev: `3002`
+- Chat backend dev: `8008`
+- dpanel-api: `8088`
+- Operator metrics: `8089`
+
+If you need a new port, pick from 3000–3009, 8008–8010, or 8088–8090. Update PORT_REGISTRY.md.
+
 ## Build Commands Reference
 
 ```bash
@@ -127,13 +141,16 @@ cd dclaw-platform/dpanel && npm run build
 # Operator
 cd dclaw-platform/dclaw-operator && go build ./...
 
-# dpanel-api
-cd dclaw-platform/dpanel-api && go build -o dpanel-api .
+# dpanel-api (uses port 8088)
+cd dclaw-platform/dpanel-api && go build -o dpanel-api . && ./dpanel-api
 
-# Chat frontend
-cd dclaw-chat && npm run build
+# Chat frontend (uses port 3002)
+cd dclaw-chat && npm run dev -- --port 3002
 
-# Chat backend
+# Chat backend (uses port 8008)
+cd dclaw-chat/backend && uvicorn main:app --host 0.0.0.0 --port 8008
+
+# Chat tests
 cd dclaw-chat/backend && pytest
 
 # Tauri desktop

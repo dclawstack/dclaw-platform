@@ -234,7 +234,19 @@ Before starting work, an agent should:
 
 ---
 
-## 10. Conventions Summary
+## 10. Port Registry
+
+All DClaw Stack services must use assigned ports to avoid conflicts with PM2, Docker, and K8s tunnels on the dev machine.
+
+**Source of truth:** `dclaw-platform/PORT_REGISTRY.md`
+
+**Key rules:**
+- NEVER use 8080 (taken by kubectl port-forward)
+- NEVER use 8000 (taken by Docker/Colima)
+- NEVER use 5000, 7000 (taken by macOS ControlCenter)
+- Use DClaw ranges: 3000–3009 (frontend dev), 8008–8010 (backend dev), 8088–8090 (platform services)
+
+## 11. Conventions Summary
 
 - **Language:** TypeScript (frontend), Go (platform/operator), Python (ML/backend), Rust (desktop)
 - **Frontend:** Next.js 16 + Tailwind CSS v4 + shadcn/ui (DPanel), Next.js 14 (Chat)
