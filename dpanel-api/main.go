@@ -58,7 +58,7 @@ type Server struct {
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = "8080"
+		port = "8088" // NOT 8080 — taken by kubectl port-forward on dev machine. See PORT_REGISTRY.md
 	}
 
 	var config *rest.Config

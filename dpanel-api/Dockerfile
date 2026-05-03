@@ -11,5 +11,5 @@ FROM gcr.io/distroless/static:nonroot
 WORKDIR /
 COPY --from=builder /app/dpanel-api /dpanel-api
 USER 65532:65532
-EXPOSE 8080
+EXPOSE 8085
 ENTRYPOINT ["/dpanel-api"]
