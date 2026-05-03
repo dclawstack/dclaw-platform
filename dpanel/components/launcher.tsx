@@ -1,11 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Search, ExternalLink, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { Search, Sparkles, Download, ExternalLink } from "lucide-react";
 import { apps } from "@/lib/apps";
+import { useInstall } from "@/components/install-context";
 
 export function Launcher() {
   const [query, setQuery] = useState("");
+  const { isInstalled } = useInstall();
 
   const filtered = apps.filter(
     (app) =>
@@ -13,6 +16,9 @@ export function Launcher() {
       app.tagline.toLowerCase().includes(query.toLowerCase()) ||
       app.category.toLowerCase().includes(query.toLowerCase())
   );
+
+  const liveCount = apps.filter((a) => a.status === "live").length;
+  const installedCount = apps.filter((a) => isInstalled(a.id)).length;
 
   return (
     <div className="flex flex-col items-center w-full max-w-3xl mx-auto px-6 py-12">
@@ -44,19 +50,18 @@ export function Launcher() {
         {filtered.map((app) => {
           const Icon = app.icon;
           const isLive = app.status === "live";
+          const installed = isInstalled(app.id);
           return (
-            <a
+            <Link
               key={app.id}
-              href={isLive ? `https://${app.domain}` : undefined}
-              target={isLive ? "_blank" : undefined}
-              rel={isLive ? "noopener noreferrer" : undefined}
+              href={`/app/${app.id}`}
               className={`
                 group relative flex flex-col items-center justify-center
                 rounded-2xl p-6 border transition-all duration-200
                 ${
                   isLive
                     ? "border-zinc-800 bg-zinc-900/50 hover:bg-zinc-800/60 hover:scale-[1.02] hover:shadow-lg cursor-pointer"
-                    : "border-zinc-800/40 bg-zinc-900/20 opacity-60 cursor-not-allowed"
+                    : "border-zinc-800/40 bg-zinc-900/20 opacity-60 cursor-pointer"
                 }
               `}
             >
@@ -71,15 +76,20 @@ export function Launcher() {
                 {isLive ? "Live" : "Soon"}
               </span>
 
+              {/* Install badge */}
+              {installed && (
+                <span className="absolute top-3 left-3 text-[10px] font-medium px-2 py-0.5 rounded-full bg-blue-500/15 text-blue-400 flex items-center gap-1">
+                  <Download className="w-3 h-3" />
+                  Installed
+                </span>
+              )}
+
               {/* Icon */}
               <div
                 className="w-14 h-14 rounded-xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110"
                 style={{ backgroundColor: app.bgColor }}
               >
-                <Icon
-                  className="w-7 h-7"
-                  style={{ color: app.color }}
-                />
+                <Icon className="w-7 h-7" style={{ color: app.color }} />
               </div>
 
               {/* Name */}
@@ -92,11 +102,11 @@ export function Launcher() {
                 {app.tagline}
               </span>
 
-              {/* External link indicator */}
-              {isLive && (
+              {/* External link indicator for installed live apps */}
+              {isLive && installed && (
                 <ExternalLink className="absolute bottom-3 right-3 w-3.5 h-3.5 text-zinc-600 opacity-0 group-hover:opacity-100 transition-opacity" />
               )}
-            </a>
+            </Link>
           );
         })}
       </div>
@@ -109,9 +119,15 @@ export function Launcher() {
       )}
 
       {/* Footer */}
-      <div className="mt-12 text-xs text-zinc-600">
-        DClaw Platform v0.1.0 — {apps.filter((a) => a.status === "live").length}{" "}
-        of {apps.length} apps live
+      <div className="mt-12 text-xs text-zinc-600 flex flex-col items-center gap-1">
+        <span>
+          DClaw Platform v0.1.0 — {liveCount} of {apps.length} apps live
+        </span>
+        {installedCount > 0 && (
+          <span className="text-zinc-500">
+            {installedCount} app{installedCount !== 1 ? "s" : ""} installed
+          </span>
+        )}
       </div>
     </div>
   );
