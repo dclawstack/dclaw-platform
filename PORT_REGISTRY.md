@@ -48,9 +48,14 @@ These ports are permanently occupied by system services, PM2, Docker, or K8s tun
 | **3000** | DPanel dev server | Local dev | Shell | ✅ Free |
 | **3002** | DClaw Chat frontend dev | Local dev | Shell | ✅ Free |
 | **8008** | DClaw Chat backend dev | Local dev | Shell | ✅ Free |
-| **8088** | dpanel-api | Local + K8s | Shell | ✅ Free |
-| **8089** | dclaw-operator metrics | K8s cluster | Shell | ✅ Free |
-| **18080** | dclaw-operator metrics (local fallback) | Local dev | Shell | ✅ Free |
+| **8088** | dpanel-api | Local + K8s | Shell | ✅ Assigned |
+| **8089** | dclaw-operator metrics | K8s cluster | Shell | ✅ Assigned |
+| **8090** | dclaw-rag backend | Local + K8s | Shell | ✅ Assigned |
+| **8091** | dclaw-agent backend | Local + K8s | Shell | ✅ Assigned |
+| **8092** | dclaw-med backend | Local + K8s | Shell | ✅ Assigned |
+| **8093** | dclaw-learn backend | Local + K8s | Shell | ✅ Reserved |
+| **8094** | dclaw-code backend | Local + K8s | Shell | ✅ Assigned |
+| **18080** | dclaw-operator metrics (local fallback) | Local dev | Shell | ✅ Assigned |
 | **3003** | *Reserved: DClaw Flow dev* | Future | — | ✅ Free |
 | **3004** | *Reserved: DClaw Med dev* | Future | — | ✅ Free |
 | **3005** | *Reserved: DClaw Learn dev* | Future | — | ✅ Free |

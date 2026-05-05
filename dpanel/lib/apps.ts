@@ -46,7 +46,7 @@ export const apps: App[] = [
     bgColor: "rgba(59, 130, 246, 0.15)",
     domain: "chat.dclawstack.io",
     category: "Communication",
-    status: "live",
+    status: "coming_soon",
   },
   {
     id: "flow",
@@ -67,7 +67,7 @@ export const apps: App[] = [
     bgColor: "rgba(16, 185, 129, 0.15)",
     domain: "flow.dclawstack.io",
     category: "Automation",
-    status: "coming_soon",
+    status: "live",
   },
   {
     id: "med",
@@ -88,7 +88,7 @@ export const apps: App[] = [
     bgColor: "rgba(239, 68, 68, 0.15)",
     domain: "med.dclawstack.io",
     category: "Healthcare",
-    status: "coming_soon",
+    status: "live",
   },
   {
     id: "learn",
@@ -172,7 +172,7 @@ export const apps: App[] = [
     bgColor: "rgba(31, 41, 55, 0.15)",
     domain: "code.dclawstack.io",
     category: "Development",
-    status: "coming_soon",
+    status: "live",
   },
   {
     id: "agent",
@@ -193,7 +193,7 @@ export const apps: App[] = [
     bgColor: "rgba(139, 92, 246, 0.15)",
     domain: "agent.dclawstack.io",
     category: "Platform",
-    status: "coming_soon",
+    status: "live",
   },
   {
     id: "rag",
@@ -214,6 +214,6 @@ export const apps: App[] = [
     bgColor: "rgba(245, 158, 11, 0.15)",
     domain: "rag.dclawstack.io",
     category: "Platform",
-    status: "coming_soon",
+    status: "live",
   },
 ];
