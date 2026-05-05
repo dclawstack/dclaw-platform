@@ -11,20 +11,22 @@
 |-----------|--------|---------|
 | Cluster | ✅ Running | `colima` context, k3s v1.35.0 |
 | Ingress Controller | ✅ Installed | nginx-ingress, NodePort 30081 (HTTP) / 30443 (HTTPS) |
-| Namespace `dclaw-core` | ✅ Exists | dpanel-api running |
-| Namespace `dclaw` | ✅ Exists | Empty (ready for apps) |
+| Namespace `dclaw-core` | ✅ Exists | dpanel-api running (old port 8085) |
+| Namespace `dclaw` | ✅ Exists | dclaw-learn deployed and tested |
 | Namespace `ingress-nginx` | ✅ Exists | nginx controller pods |
 
-### Running Pods
+### Running Pods (dclaw namespace)
 ```
-dclaw-core   dpanel-api-57d69c4687-dwfdk   1/1 Running   NodePort 30080
+dclaw-learn-backend    2/2 Running   NodePort 30093
+dclaw-learn-frontend   2/2 Running   NodePort 30005
+postgres               1/1 Running   ClusterIP 5432
 ```
 
-### Port Mappings (Local Access)
-| Service | NodePort | Internal Port | URL |
-|---------|----------|---------------|-----|
-| nginx ingress | 30081 | 80 | http://localhost:30081 |
-| dpanel-api (old) | 30080 | 8085 | http://localhost:30080 |
+### End-to-End Test Results ✅
+| Test | URL | Result |
+|------|-----|--------|
+| Backend /health | http://localhost:30093/health | ✅ `{"status":"ok","version":"0.1.0"}` |
+| Frontend | http://localhost:30005/ | ✅ HTTP 200, DClaw Learn landing page |
 
 ---
 
@@ -52,19 +54,7 @@ curl -fsSL https://raw.githubusercontent.com/dclawstack/dclaw-platform/main/inst
 | DClaw SEO | http://localhost:3007 |
 | DClaw Create | http://localhost:3008 |
 
-### Backends
-| App | Port |
-|-----|------|
-| dpanel-api | 8088 |
-| flow-backend | 8088 |
-| rag-backend | 8090 |
-| agent-backend | 8091 |
-| med-backend | 8092 |
-| learn-backend | 8093 |
-| code-backend | 8094 |
-| seo-backend | 8095 |
-
-⚠️ **Port conflict:** flow-backend and dpanel-api both claim 8088 in compose. Need to resolve.
+⚠️ **Port conflict in compose:** dpanel-api and flow-backend both bind to host port 8088. Need to resolve.
 
 ---
 
@@ -77,15 +67,22 @@ curl -fsSL https://raw.githubusercontent.com/dclawstack/dclaw-platform/main/inst
 ```
 
 ### Helm Charts Available
-| App | Chart Path | Backend Port |
-|-----|-----------|--------------|
-| dclaw-flow | `helm/dclaw-flow/` | 8088 |
-| dclaw-rag | `helm/dclaw-rag/` | 8090 |
-| dclaw-agent | `helm/dclaw-agent/` | 8091 |
-| dclaw-med | `helm/dclaw-med/` | 8092 |
-| dclaw-code | `helm/dclaw-code/` | 8094 |
-| dclaw-learn | `helm/dclaw-learn/` | 8093 |
-| dclaw-seo | `helm/dclaw-seo/` | 8095 |
+| App | Chart Path | Backend Port | Frontend Port | Status |
+|-----|-----------|--------------|---------------|--------|
+| dclaw-flow | `helm/dclaw-flow/` | 8088 | 3003 | ⏳ Needs ARM64 image |
+| dclaw-rag | `helm/dclaw-rag/` | 8090 | 3009 | ⏳ Needs ARM64 image |
+| dclaw-agent | `helm/dclaw-agent/` | 8091 | — | ⏳ Needs ARM64 image |
+| dclaw-med | `helm/dclaw-med/` | 8092 | 3004 | ⏳ Needs ARM64 image |
+| dclaw-code | `helm/dclaw-code/` | 8094 | 3005 | ⏳ Needs ARM64 image |
+| **dclaw-learn** | **`helm/dclaw-learn/`** | **8093** | **3005** | **✅ Tested & Working** |
+| dclaw-seo | `helm/dclaw-seo/` | 8095 | 3006 | ⏳ Needs ARM64 image |
+| dclaw-create | `helm/dclaw-create/` | — | 3007 | ⏳ Needs ARM64 image |
+
+### K8s Deployment Issues Found During Testing
+1. **Missing ServiceAccount template** — Helm charts reference `serviceAccountName` but no `serviceaccount.yaml` template exists. Workaround: `--set serviceAccount.create=false`
+2. **CloudNativePG dependency** — Charts depend on `cloudnative-pg` Helm chart but CRDs aren't installed in cluster. Workaround: `--set database.enabled=false` + deploy separate Postgres
+3. **Frontend targetPort mismatch** — Helm values had `frontend.port: 3000` but Dockerfile exposes `3005`. Fix: Align ports in values.yaml
+4. **AMD64-only GHCR images** — Can't run on ARM64 Mac/Colima. Fix: Build locally or wait for multi-arch CI rebuilds
 
 ---
 
@@ -108,6 +105,22 @@ no matching manifest for linux/arm64/v8
 Updated all CI workflows to build `linux/amd64,linux/arm64` multi-arch images.
 **Waiting for:** Next push to each repo to trigger rebuilds.
 
+### Workaround for Local Testing (ARM64 Mac)
+Build images locally and import into k3s containerd:
+```bash
+# Build
+docker build -t dclaw-learn-backend:local ./backend
+docker build -t dclaw-learn-frontend:local ./frontend
+
+# Save & import into k3s
+docker save dclaw-learn-backend:local dclaw-learn-frontend:local | \
+  colima ssh -- sudo ctr -a /run/k3s/containerd/containerd.sock -n k8s.io images import -
+
+# Retag without docker.io/library prefix
+colima ssh -- sudo ctr -a /run/k3s/containerd/containerd.sock -n k8s.io images tag \
+  docker.io/library/dclaw-learn-backend:local dclaw-learn-backend:local
+```
+
 ---
 
 ## 🎯 Action Items
@@ -128,46 +141,60 @@ Updated all CI workflows to build `linux/amd64,linux/arm64` multi-arch images.
    - Trigger CI rebuilds for all repos (multi-arch now configured)
    - Verify `docker pull ghcr.io/dclawstack/dclaw-learn-backend:latest` works on ARM64
 
+4. **Fix Helm chart serviceAccount template**
+   - Add missing `serviceaccount.yaml` template OR set `serviceAccount.create: false` default
+   - Applies to: flow, rag, agent, med, code, learn, seo, create
+
+5. **Fix Helm chart frontend port alignment**
+   - Ensure `frontend.port` in values.yaml matches Dockerfile `EXPOSE` port
+   - Applies to all apps with frontends
+
 ### 🟡 Medium Priority
 
-4. **Deploy apps to K8s cluster**
-   - Currently only dpanel-api (old version) is running
-   - Need ARM64 images first, OR build locally for testing
-   - Once images available: `./k8s-deploy.sh dclaw latest`
+6. **Deploy remaining apps to K8s cluster**
+   - dclaw-learn is deployed and tested ✅
+   - Need ARM64 images or local builds for: flow, rag, agent, med, code, seo, create
 
-5. **Fix dpanel-api deployed port**
+7. **Fix dpanel-api deployed port**
    - Currently deployed on internal port 8085 (old config)
    - Should be 8088 per PORT_REGISTRY.md
    - Redeploy with updated Helm values
 
-6. **Test Linux installer end-to-end**
+8. **Install CloudNativePG operator (optional)**
+   - Required if using `database.enabled=true` in Helm charts
+   - Alternative: Use shared Postgres deployment for simplicity
+
+9. **Test Linux installer end-to-end**
    - Spin up a Linux VM (or use Docker in Docker)
    - Run `install.sh`
    - Verify all services start and respond on expected ports
 
 ### 🟢 Low Priority / Future
 
-7. **DClaw Chat integration**
-   - Chat repo exists but not fully DClaw-ified (no Helm chart in standard location)
-   - Port 8008 backend, 3002 frontend
+10. **DClaw Chat integration**
+    - Chat repo exists but not fully DClaw-ified (no Helm chart in standard location)
+    - Port 8008 backend, 3002 frontend
 
-8. **Tauri desktop apps**
-   - Deferred until Apple Developer cert obtained
-   - Can proceed with Linux `.AppImage` builds anytime
+11. **Tauri desktop apps**
+    - Deferred until Apple Developer cert obtained
+    - Can proceed with Linux `.AppImage` builds anytime
 
-9. **Operator hardening**
-   - `reconcileDatabase` is placeholder (logs only)
-   - CloudNativePG integration incomplete
+12. **Operator hardening**
+    - `reconcileDatabase` is placeholder (logs only)
+    - CloudNativePG integration incomplete
 
 ---
 
 ## 🧪 Test Checklist
 
 ### Local K8s (Colima)
+- [x] nginx ingress installed and running
+- [x] dclaw-learn backend responds on NodePort 30093
+- [x] dclaw-learn frontend serves on NodePort 30005
+- [x] `/health` endpoint returns `{"status":"ok"}`
 - [ ] dpanel-api responds on correct port (8088)
-- [ ] nginx ingress routes traffic
-- [ ] At least one DClaw app deploys and responds
-- [ ] `/health` endpoints return `{"status":"ok"}`
+- [ ] At least 3 DClaw apps deployed simultaneously
+- [ ] Ingress routes traffic by host header
 
 ### Docker Compose (Linux)
 - [ ] `install.sh` downloads and starts all services
@@ -177,7 +204,7 @@ Updated all CI workflows to build `linux/amd64,linux/arm64` multi-arch images.
 - [ ] No port conflicts
 
 ### Cross-Platform Images
-- [ ] `docker pull` works on ARM64 (Mac)
+- [ ] `docker pull` works on ARM64 (Mac) — pending CI rebuild
 - [ ] `docker pull` works on AMD64 (Linux server)
 - [ ] Same tag resolves to correct architecture automatically
 
@@ -187,9 +214,10 @@ Updated all CI workflows to build `linux/amd64,linux/arm64` multi-arch images.
 
 | Component | Version / Commit | Location |
 |-----------|-----------------|----------|
-| install.sh | `b0112c5` | `dclaw-platform/install.sh` |
-| k8s-deploy.sh | `b0112c5` | `dclaw-platform/k8s-deploy.sh` |
-| docker-compose.yml | `b0112c5` | `dclaw-platform/docker-compose.yml` |
+| install.sh | `ebca1e0` | `dclaw-platform/install.sh` |
+| k8s-deploy.sh | `ebca1e0` | `dclaw-platform/k8s-deploy.sh` |
+| docker-compose.yml | `ebca1e0` | `dclaw-platform/docker-compose.yml` |
 | DPanel launcher | `e7b4187` | `dclaw-platform/dpanel/` |
 | Port Registry | `d0af937` | `dclaw-platform/PORT_REGISTRY.md` |
 | Master PRD | `main` | `dclawstack/dclaw-prd` |
+| DEPLOYMENT_STATUS | `ebca1e0` | `dclaw-platform/DEPLOYMENT_STATUS.md` |
