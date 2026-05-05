@@ -55,10 +55,13 @@ These ports are permanently occupied by system services, PM2, Docker, or K8s tun
 | **8092** | dclaw-med backend | Local + K8s | Shell | ✅ Assigned |
 | **8093** | dclaw-learn backend | Local + K8s | Shell | ✅ Reserved |
 | **8094** | dclaw-code backend | Local + K8s | Shell | ✅ Assigned |
+| **8095** | dclaw-seo backend | Local + K8s | Shell | ✅ Reserved |
 | **18080** | dclaw-operator metrics (local fallback) | Local dev | Shell | ✅ Assigned |
-| **3003** | *Reserved: DClaw Flow dev* | Future | — | ✅ Free |
-| **3004** | *Reserved: DClaw Med dev* | Future | — | ✅ Free |
-| **3005** | *Reserved: DClaw Learn dev* | Future | — | ✅ Free |
+| **3003** | DClaw Flow frontend dev | Local dev | Shell | ✅ Assigned |
+| **3004** | DClaw Med frontend dev | Local dev | Shell | ✅ Assigned |
+| **3005** | DClaw Learn frontend dev | Local dev | Shell | ✅ Reserved |
+| **3006** | DClaw SEO frontend dev | Local dev | Shell | ✅ Reserved |
+| **3007** | DClaw Create frontend dev | Local dev | Shell | ✅ Reserved |
 | **8443** | *Reserved: DClaw HTTPS dev* | Future | — | ✅ Free |
 
 ### Port Ranges by Purpose
@@ -113,5 +116,5 @@ flag.StringVar(&metricsAddr, "metrics-bind-address", ":8089", ...)
 
 ---
 
-*Last updated: 2026-05-03 by Shell Agent*  
+*Last updated: 2026-05-05 by Shell Agent*  
 *Next review: When adding a new service or dev environment*
