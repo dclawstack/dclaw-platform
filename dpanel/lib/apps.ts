@@ -151,7 +151,7 @@ export const apps: App[] = [
     bgColor: "rgba(236, 72, 153, 0.15)",
     domain: "create.dclawstack.io",
     category: "Media",
-    status: "coming_soon",
+    status: "live",
   },
   {
     id: "code",
