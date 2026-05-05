@@ -59,7 +59,8 @@ These ports are permanently occupied by system services, PM2, Docker, or K8s tun
 | **18080** | dclaw-operator metrics (local fallback) | Local dev | Shell | ✅ Assigned |
 | **3003** | DClaw Flow frontend dev | Local dev | Shell | ✅ Assigned |
 | **3004** | DClaw Med frontend dev | Local dev | Shell | ✅ Assigned |
-| **3005** | DClaw Learn frontend dev | Local dev | Shell | ✅ Reserved |
+| **3005** | DClaw Code frontend dev | Local dev | Shell | ✅ Assigned |
+| **3008** | DClaw Learn frontend dev | Local dev | Shell | ✅ Assigned |
 | **3006** | DClaw SEO frontend dev | Local dev | Shell | ✅ Reserved |
 | **3007** | DClaw Create frontend dev | Local dev | Shell | ✅ Reserved |
 | **8443** | *Reserved: DClaw HTTPS dev* | Future | — | ✅ Free |

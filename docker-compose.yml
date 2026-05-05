@@ -11,8 +11,8 @@
 #   DClaw Chat:  http://localhost:3002
 #   DClaw Flow:  http://localhost:3003
 #   DClaw Med:   http://localhost:3004
-#   DClaw Learn: http://localhost:3005
-#   DClaw Code:  http://localhost:3005  (shares port — adjust if needed)
+#   DClaw Learn: http://localhost:3008
+#   DClaw Code:  http://localhost:3005
 #   DClaw SEO:   http://localhost:3006
 #   DClaw Create:http://localhost:3007
 
@@ -28,7 +28,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U dclaw"]
       interval: 10s
@@ -175,7 +175,7 @@ services:
     environment:
       NEXT_PUBLIC_API_URL: "http://localhost:8094"
     ports:
-      - "3005:3005"
+      - "3008:3005"
     depends_on:
       - code-backend
 
