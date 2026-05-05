@@ -1,0 +1,243 @@
+# DClaw Stack — Unified Docker Compose
+# One-line self-hosting for Linux/macOS with Docker
+#
+# Usage:
+#   docker compose up -d          # Start everything
+#   docker compose down           # Stop everything
+#   docker compose pull           # Update all images
+#
+# Access:
+#   DPanel:      http://localhost:3000
+#   DClaw Chat:  http://localhost:3002
+#   DClaw Flow:  http://localhost:3003
+#   DClaw Med:   http://localhost:3004
+#   DClaw Learn: http://localhost:3005
+#   DClaw Code:  http://localhost:3005  (shares port — adjust if needed)
+#   DClaw SEO:   http://localhost:3006
+#   DClaw Create:http://localhost:3007
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dclaw-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dclaw
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dclaw}
+      POSTGRES_DB: dclaw
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dclaw"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── DPanel ─────────────────────────────────────────────────────────
+  dpanel-api:
+    image: ghcr.io/dclawstack/dpanel-api:latest
+    container_name: dclaw-dpanel-api
+    restart: unless-stopped
+    environment:
+      PORT: "8088"
+      DATABASE_URL: "postgresql://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw?sslmode=disable"
+    ports:
+      - "8088:8088"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  dpanel:
+    image: ghcr.io/dclawstack/dclaw-platform-dpanel:latest
+    container_name: dclaw-dpanel
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_DPANEL_API_URL: "http://localhost:8088"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - dpanel-api
+
+  # ─── DClaw Flow ─────────────────────────────────────────────────────
+  flow-backend:
+    image: ghcr.io/dclawstack/dclaw-flow-backend:latest
+    container_name: dclaw-flow-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw_flow"
+      API_PORT: "8088"
+      APP_ENV: "prod"
+    ports:
+      - "8088:8088"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  flow-frontend:
+    image: ghcr.io/dclawstack/dclaw-flow-frontend:latest
+    container_name: dclaw-flow-frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8088"
+    ports:
+      - "3003:3003"
+    depends_on:
+      - flow-backend
+
+  # ─── DClaw RAG ──────────────────────────────────────────────────────
+  rag-backend:
+    image: ghcr.io/dclawstack/dclaw-rag-backend:latest
+    container_name: dclaw-rag-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw_rag"
+      API_PORT: "8090"
+      APP_ENV: "prod"
+    ports:
+      - "8090:8090"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  rag-frontend:
+    image: ghcr.io/dclawstack/dclaw-rag-frontend:latest
+    container_name: dclaw-rag-frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8090"
+    ports:
+      - "3009:3009"
+    depends_on:
+      - rag-backend
+
+  # ─── DClaw Agent ────────────────────────────────────────────────────
+  agent-backend:
+    image: ghcr.io/dclawstack/dclaw-agent-backend:latest
+    container_name: dclaw-agent-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw_agent"
+      API_PORT: "8091"
+      APP_ENV: "prod"
+    ports:
+      - "8091:8091"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ─── DClaw Med ──────────────────────────────────────────────────────
+  med-backend:
+    image: ghcr.io/dclawstack/dclaw-med-backend:latest
+    container_name: dclaw-med-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw_med"
+      API_PORT: "8092"
+      APP_ENV: "prod"
+    ports:
+      - "8092:8092"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  med-frontend:
+    image: ghcr.io/dclawstack/dclaw-med-frontend:latest
+    container_name: dclaw-med-frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8092"
+    ports:
+      - "3004:3004"
+    depends_on:
+      - med-backend
+
+  # ─── DClaw Code ─────────────────────────────────────────────────────
+  code-backend:
+    image: ghcr.io/dclawstack/dclaw-code-backend:latest
+    container_name: dclaw-code-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw_code"
+      API_PORT: "8094"
+      APP_ENV: "prod"
+    ports:
+      - "8094:8094"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  code-frontend:
+    image: ghcr.io/dclawstack/dclaw-code-frontend:latest
+    container_name: dclaw-code-frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8094"
+    ports:
+      - "3005:3005"
+    depends_on:
+      - code-backend
+
+  # ─── DClaw Learn ────────────────────────────────────────────────────
+  learn-backend:
+    image: ghcr.io/dclawstack/dclaw-learn-backend:latest
+    container_name: dclaw-learn-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw_learn"
+      API_PORT: "8093"
+      APP_ENV: "prod"
+    ports:
+      - "8093:8093"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  learn-frontend:
+    image: ghcr.io/dclawstack/dclaw-learn-frontend:latest
+    container_name: dclaw-learn-frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8093"
+    ports:
+      - "3006:3006"
+    depends_on:
+      - learn-backend
+
+  # ─── DClaw SEO ──────────────────────────────────────────────────────
+  seo-backend:
+    image: ghcr.io/dclawstack/dclaw-seo-backend:latest
+    container_name: dclaw-seo-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://dclaw:${POSTGRES_PASSWORD:-dclaw}@postgres:5432/dclaw_seo"
+      API_PORT: "8095"
+      APP_ENV: "prod"
+    ports:
+      - "8095:8095"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  seo-frontend:
+    image: ghcr.io/dclawstack/dclaw-seo-frontend:latest
+    container_name: dclaw-seo-frontend
+    restart: unless-stopped
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:8095"
+    ports:
+      - "3007:3007"
+    depends_on:
+      - seo-backend
+
+  # ─── DClaw Create ───────────────────────────────────────────────────
+  create-frontend:
+    image: ghcr.io/dclawstack/dclaw-create:latest
+    container_name: dclaw-create-frontend
+    restart: unless-stopped
+    ports:
+      - "3008:3008"
+
+volumes:
+  postgres_data:
