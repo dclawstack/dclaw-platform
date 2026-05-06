@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { InstallProvider } from "@/components/install-context";
+import { AppShell } from "@/components/app-shell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +29,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
-        <InstallProvider>{children}</InstallProvider>
+      <body className="min-h-full bg-zinc-950 text-zinc-100">
+        <InstallProvider>
+          <AppShell>{children}</AppShell>
+        </InstallProvider>
       </body>
     </html>
   );

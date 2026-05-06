@@ -1,0 +1,185 @@
+openapi: 3.0.3
+info:
+  title: DClaw Docs API
+  description: API for browsing and searching DClaw app documentation
+  version: 1.0.0
+servers:
+  - url: http://localhost:8088
+    description: Local development
+paths:
+  /api/v1/docs/apps:
+    get:
+      summary: List all apps with documentation metadata
+      operationId: listDocApps
+      responses:
+        "200":
+          description: List of apps with doc metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  apps:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/DocAppMeta"
+  /api/v1/docs/apps/{appId}:
+    get:
+      summary: Get documentation metadata for a specific app
+      operationId: getDocAppMeta
+      parameters:
+        - name: appId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: App doc metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocAppMeta"
+        "404":
+          description: App not found
+  /api/v1/docs/apps/{appId}/{path}:
+    get:
+      summary: Get a specific documentation page for an app
+      operationId: getDocPage
+      parameters:
+        - name: appId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Doc path (e.g., getting-started/index)
+      responses:
+        "200":
+          description: Doc page content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocContent"
+        "404":
+          description: App or doc not found
+  /api/v1/docs/ecosystem:
+    get:
+      summary: List ecosystem documentation sections
+      operationId: listEcosystemDocs
+      responses:
+        "200":
+          description: List of ecosystem doc sections
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sections:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        path:
+                          type: string
+                        title:
+                          type: string
+  /api/v1/docs/ecosystem/{path}:
+    get:
+      summary: Get an ecosystem documentation page
+      operationId: getEcosystemDoc
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ecosystem doc content
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DocContent"
+  /api/v1/docs/search:
+    get:
+      summary: Search across all documentation
+      operationId: searchDocs
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query
+      responses:
+        "200":
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                  total:
+                    type: integer
+                  results:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/SearchResult"
+components:
+  schemas:
+    DocAppMeta:
+      type: object
+      properties:
+        appId:
+          type: string
+        title:
+          type: string
+        version:
+          type: string
+        hasDocs:
+          type: boolean
+        nav:
+          type: array
+          items:
+            $ref: "#/components/schemas/DocNav"
+    DocNav:
+      type: object
+      properties:
+        group:
+          type: string
+        pages:
+          type: array
+          items:
+            type: string
+    DocContent:
+      type: object
+      properties:
+        appId:
+          type: string
+        path:
+          type: string
+        title:
+          type: string
+        content:
+          type: string
+          description: Markdown content
+    SearchResult:
+      type: object
+      properties:
+        appId:
+          type: string
+        appName:
+          type: string
+        path:
+          type: string
+        title:
+          type: string
+        snippet:
+          type: string

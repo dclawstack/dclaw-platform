@@ -63,13 +63,57 @@ These ports are permanently occupied by system services, PM2, Docker, or K8s tun
 | **3008** | DClaw Learn frontend dev | Local dev | Shell | ✅ Assigned |
 | **3006** | DClaw SEO frontend dev | Local dev | Shell | ✅ Reserved |
 | **3007** | DClaw Create frontend dev | Local dev | Shell | ✅ Reserved |
+| **3010** | DClaw Design frontend dev | Local dev | Shell | ✅ Assigned |
+| **3011** | DClaw Video frontend dev | Local dev | Shell | ✅ Assigned |
+| **3012** | DClaw Research frontend dev | Local dev | Shell | ✅ Assigned |
+| **3013** | DClaw Legal frontend dev | Local dev | Shell | ✅ Assigned |
+| **3014** | DClaw Finance frontend dev | Local dev | Shell | ✅ Assigned |
+| **3015** | DClaw Sales frontend dev | Local dev | Shell | ✅ Assigned |
+| **3016** | DClaw Support frontend dev | Local dev | Shell | ✅ Assigned |
+| **3017** | DClaw HR frontend dev | Local dev | Shell | ✅ Assigned |
+| **3018** | DClaw Translate frontend dev | Local dev | Shell | ✅ Assigned |
+| **3019** | DClaw Write frontend dev | Local dev | Shell | ✅ Assigned |
+| **3020** | DClaw Meet frontend dev | Local dev | Shell | ✅ Assigned |
+| **3021** | DClaw Doc frontend dev | Local dev | Shell | ✅ Assigned |
+| **3022** | DClaw Sheet frontend dev | Local dev | Shell | ✅ Assigned |
+| **3023** | DClaw Slide frontend dev | Local dev | Shell | ✅ Assigned |
+| **3024** | DClaw Email frontend dev | Local dev | Shell | ✅ Assigned |
+| **3025** | DClaw Calendar frontend dev | Local dev | Shell | ✅ Assigned |
+| **3026** | DClaw Task frontend dev | Local dev | Shell | ✅ Assigned |
+| **3027** | DClaw Wiki frontend dev | Local dev | Shell | ✅ Assigned |
+| **3028** | DClaw Data frontend dev | Local dev | Shell | ✅ Assigned |
+| **3029** | DClaw API frontend dev | Local dev | Shell | ✅ Assigned |
+| **3030** | DClaw Test frontend dev | Local dev | Shell | ✅ Assigned |
+| **8096** | dclaw-design backend | Local + K8s | Shell | ✅ Assigned |
+| **8097** | dclaw-video backend | Local + K8s | Shell | ✅ Assigned |
+| **8098** | dclaw-research backend | Local + K8s | Shell | ✅ Assigned |
+| **8099** | dclaw-legal backend | Local + K8s | Shell | ✅ Assigned |
+| **8100** | dclaw-finance backend | Local + K8s | Shell | ✅ Assigned |
+| **8101** | dclaw-sales backend | Local + K8s | Shell | ✅ Assigned |
+| **8102** | dclaw-support backend | Local + K8s | Shell | ✅ Assigned |
+| **8103** | dclaw-hr backend | Local + K8s | Shell | ✅ Assigned |
+| **8104** | dclaw-translate backend | Local + K8s | Shell | ✅ Assigned |
+| **8105** | dclaw-write backend | Local + K8s | Shell | ✅ Assigned |
+| **8106** | dclaw-meet backend | Local + K8s | Shell | ✅ Assigned |
+| **8107** | dclaw-doc backend | Local + K8s | Shell | ✅ Assigned |
+| **8108** | dclaw-sheet backend | Local + K8s | Shell | ✅ Assigned |
+| **8109** | dclaw-slide backend | Local + K8s | Shell | ✅ Assigned |
+| **8110** | dclaw-email backend | Local + K8s | Shell | ✅ Assigned |
+| **8111** | dclaw-calendar backend | Local + K8s | Shell | ✅ Assigned |
+| **8112** | dclaw-task backend | Local + K8s | Shell | ✅ Assigned |
+| **8113** | dclaw-wiki backend | Local + K8s | Shell | ✅ Assigned |
+| **8114** | dclaw-data backend | Local + K8s | Shell | ✅ Assigned |
+| **8115** | dclaw-api backend | Local + K8s | Shell | ✅ Assigned |
+| **8116** | dclaw-test backend | Local + K8s | Shell | ✅ Assigned |
 | **8443** | *Reserved: DClaw HTTPS dev* | Future | — | ✅ Free |
 
 ### Port Ranges by Purpose
 
 - **3000–3009:** DClaw frontend dev servers (Next.js apps)
+- **3010–3019:** New DClaw frontend dev servers (batch 2)
 - **8008–8010:** DClaw backend dev servers (FastAPI / Go)
-- **8088–8090:** DClaw platform services (dpanel-api, operator metrics)
+- **8088–8095:** DClaw backend services (batch 1)
+- **8096–8105:** DClaw backend services (batch 2)
 - **18080–18090:** DClaw platform local fallbacks (when 808x is taken)
 
 ---
@@ -119,3 +163,64 @@ flag.StringVar(&metricsAddr, "metrics-bind-address", ":8089", ...)
 
 *Last updated: 2026-05-05 by Shell Agent*  
 *Next review: When adding a new service or dev environment*
+
+| **3031** | DClaw Deploy frontend dev | Local dev | Shell | ✅ Assigned |
+| **3032** | DClaw Monitor frontend dev | Local dev | Shell | ✅ Assigned |
+| **3033** | DClaw Secure frontend dev | Local dev | Shell | ✅ Assigned |
+| **3034** | DClaw Backup frontend dev | Local dev | Shell | ✅ Assigned |
+| **3035** | DClaw Migrate frontend dev | Local dev | Shell | ✅ Assigned |
+| **3036** | DClaw Cost frontend dev | Local dev | Shell | ✅ Assigned |
+| **3037** | DClaw Carbon frontend dev | Local dev | Shell | ✅ Assigned |
+| **3038** | DClaw Compliance frontend dev | Local dev | Shell | ✅ Assigned |
+| **3039** | DClaw Audit frontend dev | Local dev | Shell | ✅ Assigned |
+| **3040** | DClaw Policy frontend dev | Local dev | Shell | ✅ Assigned |
+| **3041** | DClaw Train frontend dev | Local dev | Shell | ✅ Assigned |
+| **3042** | DClaw Recruit frontend dev | Local dev | Shell | ✅ Assigned |
+| **3043** | DClaw Onboard frontend dev | Local dev | Shell | ✅ Assigned |
+| **3044** | DClaw Offboard frontend dev | Local dev | Shell | ✅ Assigned |
+| **3045** | DClaw Assets frontend dev | Local dev | Shell | ✅ Assigned |
+| **3046** | DClaw Network frontend dev | Local dev | Shell | ✅ Assigned |
+| **3047** | DClaw Inventory frontend dev | Local dev | Shell | ✅ Assigned |
+| **3048** | DClaw Forecast frontend dev | Local dev | Shell | ✅ Assigned |
+| **3049** | DClaw Quality frontend dev | Local dev | Shell | ✅ Assigned |
+| **3050** | DClaw Maintenance frontend dev | Local dev | Shell | ✅ Assigned |
+| **3051** | DClaw Route frontend dev | Local dev | Shell | ✅ Assigned |
+| **3052** | DClaw Warehouse frontend dev | Local dev | Shell | ✅ Assigned |
+| **3053** | DClaw Fleet frontend dev | Local dev | Shell | ✅ Assigned |
+| **3054** | DClaw Energy frontend dev | Local dev | Shell | ✅ Assigned |
+| **3055** | DClaw Water frontend dev | Local dev | Shell | ✅ Assigned |
+| **3056** | DClaw Waste frontend dev | Local dev | Shell | ✅ Assigned |
+| **3057** | DClaw Building frontend dev | Local dev | Shell | ✅ Assigned |
+| **3058** | DClaw Space frontend dev | Local dev | Shell | ✅ Assigned |
+| **3059** | DClaw Lease frontend dev | Local dev | Shell | ✅ Assigned |
+| **3060** | DClaw Vendor frontend dev | Local dev | Shell | ✅ Assigned |
+| **8117** | dclaw-deploy backend | Local + K8s | Shell | ✅ Assigned |
+| **8118** | dclaw-monitor backend | Local + K8s | Shell | ✅ Assigned |
+| **8119** | dclaw-secure backend | Local + K8s | Shell | ✅ Assigned |
+| **8120** | dclaw-backup backend | Local + K8s | Shell | ✅ Assigned |
+| **8121** | dclaw-migrate backend | Local + K8s | Shell | ✅ Assigned |
+| **8122** | dclaw-cost backend | Local + K8s | Shell | ✅ Assigned |
+| **8123** | dclaw-carbon backend | Local + K8s | Shell | ✅ Assigned |
+| **8124** | dclaw-compliance backend | Local + K8s | Shell | ✅ Assigned |
+| **8125** | dclaw-audit backend | Local + K8s | Shell | ✅ Assigned |
+| **8126** | dclaw-policy backend | Local + K8s | Shell | ✅ Assigned |
+| **8127** | dclaw-train backend | Local + K8s | Shell | ✅ Assigned |
+| **8128** | dclaw-recruit backend | Local + K8s | Shell | ✅ Assigned |
+| **8129** | dclaw-onboard backend | Local + K8s | Shell | ✅ Assigned |
+| **8130** | dclaw-offboard backend | Local + K8s | Shell | ✅ Assigned |
+| **8131** | dclaw-assets backend | Local + K8s | Shell | ✅ Assigned |
+| **8132** | dclaw-network backend | Local + K8s | Shell | ✅ Assigned |
+| **8133** | dclaw-inventory backend | Local + K8s | Shell | ✅ Assigned |
+| **8134** | dclaw-forecast backend | Local + K8s | Shell | ✅ Assigned |
+| **8135** | dclaw-quality backend | Local + K8s | Shell | ✅ Assigned |
+| **8136** | dclaw-maintenance backend | Local + K8s | Shell | ✅ Assigned |
+| **8137** | dclaw-route backend | Local + K8s | Shell | ✅ Assigned |
+| **8138** | dclaw-warehouse backend | Local + K8s | Shell | ✅ Assigned |
+| **8139** | dclaw-fleet backend | Local + K8s | Shell | ✅ Assigned |
+| **8140** | dclaw-energy backend | Local + K8s | Shell | ✅ Assigned |
+| **8141** | dclaw-water backend | Local + K8s | Shell | ✅ Assigned |
+| **8142** | dclaw-waste backend | Local + K8s | Shell | ✅ Assigned |
+| **8143** | dclaw-building backend | Local + K8s | Shell | ✅ Assigned |
+| **8144** | dclaw-space backend | Local + K8s | Shell | ✅ Assigned |
+| **8145** | dclaw-lease backend | Local + K8s | Shell | ✅ Assigned |
+| **8146** | dclaw-vendor backend | Local + K8s | Shell | ✅ Assigned |
