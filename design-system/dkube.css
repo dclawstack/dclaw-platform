@@ -1,0 +1,135 @@
+/**
+ * DKube Design System v1.0
+ * Source of truth for all DClaw apps.
+ *
+ * Brand:  Purple (#6B53A3)
+ * Neutrals: Near-black to warm gray
+ * Fonts:  Manrope (display), Inter (body), JetBrains Mono (code)
+ */
+
+/* ─── CSS Variables ─── */
+:root {
+  /* Brand Purple */
+  --dk-purple: #6B53A3;
+  --dk-purple-light: #9985BF;
+  --dk-purple-deep: #4A3A7A;
+  --dk-purple-wash: rgba(107, 83, 163, 0.08);
+
+  /* Neutrals */
+  --dk-surface: #0E0E10;
+  --dk-surface-raised: #1F1F23;
+  --dk-surface-elevated: #2A2A30;
+  --dk-border: rgba(255, 255, 255, 0.08);
+  --dk-body: #F4F2F8;
+  --dk-muted: #9E9AAB;
+  --dk-muted-darker: #6E6E76;
+
+  /* Semantic */
+  --dk-success: #22C55E;
+  --dk-warning: #F59E0B;
+  --dk-error: #EF4444;
+  --dk-info: #3B82F6;
+
+  /* Spacing base */
+  --dk-space-1: 4px;
+  --dk-space-2: 8px;
+  --dk-space-3: 12px;
+  --dk-space-4: 16px;
+  --dk-space-5: 20px;
+  --dk-space-6: 24px;
+  --dk-space-8: 32px;
+  --dk-space-10: 40px;
+  --dk-space-12: 48px;
+  --dk-space-16: 64px;
+
+  /* Radii */
+  --dk-radius-sm: 6px;
+  --dk-radius-md: 10px;
+  --dk-radius-lg: 14px;
+  --dk-radius-xl: 20px;
+  --dk-radius-full: 9999px;
+
+  /* Shadows (restrained 3-level ramp) */
+  --dk-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --dk-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --dk-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  /* Transitions */
+  --dk-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --dk-transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --dk-transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Tailwind v3 shadcn compatibility */
+  --background: 240 6% 6%;
+  --foreground: 260 20% 96%;
+  --card: 240 5% 11%;
+  --card-foreground: 260 20% 96%;
+  --popover: 240 5% 11%;
+  --popover-foreground: 260 20% 96%;
+  --primary: 263 32% 48%;
+  --primary-foreground: 260 20% 96%;
+  --secondary: 240 4% 16%;
+  --secondary-foreground: 260 20% 96%;
+  --muted: 240 4% 16%;
+  --muted-foreground: 255 6% 55%;
+  --accent: 240 4% 16%;
+  --accent-foreground: 260 20% 96%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 260 20% 96%;
+  --border: 240 4% 20%;
+  --input: 240 4% 20%;
+  --ring: 263 32% 48%;
+  --radius: 0.625rem;
+}
+
+/* ─── Base Styles ─── */
+.dkube-dark,
+.dark {
+  background-color: var(--dk-surface);
+  color: var(--dk-body);
+}
+
+.dkube-body {
+  font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dkube-heading {
+  font-family: var(--font-manrope, 'Manrope', system-ui, sans-serif);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.dkube-mono {
+  font-family: var(--font-jetbrains, 'JetBrains Mono', ui-monospace, monospace);
+  font-size: 0.875em;
+}
+
+/* ─── Surface Utilities ─── */
+.dk-surface {
+  background-color: var(--dk-surface);
+}
+.dk-surface-raised {
+  background-color: var(--dk-surface-raised);
+}
+.dk-surface-elevated {
+  background-color: var(--dk-surface-elevated);
+}
+
+/* ─── Scrollbar ─── */
+.dk-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.dk-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dk-scroll::-webkit-scrollbar-thumb {
+  background: var(--dk-muted-darker);
+  border-radius: var(--dk-radius-full);
+}
+.dk-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--dk-muted);
+}

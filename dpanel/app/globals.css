@@ -1,18 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #09090b;
-  --foreground: #fafafa;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* DKube Design System Tokens */
+  --color-dk-purple: #6B53A3;
+  --color-dk-purple-light: #9985BF;
+  --color-dk-purple-deep: #4A3A7A;
+  --color-dk-purple-wash: rgba(107, 83, 163, 0.08);
+
+  --color-dk-surface: #0E0E10;
+  --color-dk-surface-raised: #1F1F23;
+  --color-dk-surface-elevated: #2A2A30;
+  --color-dk-border: rgba(255, 255, 255, 0.08);
+  --color-dk-body: #F4F2F8;
+  --color-dk-muted: #9E9AAB;
+  --color-dk-muted-darker: #6E6E76;
+
+  --color-dk-success: #22C55E;
+  --color-dk-warning: #F59E0B;
+  --color-dk-error: #EF4444;
+  --color-dk-info: #3B82F6;
+
+  /* Semantic mappings */
+  --color-background: #0E0E10;
+  --color-foreground: #F4F2F8;
+  --color-card: #1F1F23;
+  --color-card-foreground: #F4F2F8;
+  --color-primary: #6B53A3;
+  --color-primary-foreground: #F4F2F8;
+  --color-secondary: #2A2A30;
+  --color-secondary-foreground: #F4F2F8;
+  --color-muted: #2A2A30;
+  --color-muted-foreground: #9E9AAB;
+  --color-accent: #2A2A30;
+  --color-accent-foreground: #F4F2F8;
+  --color-destructive: #EF4444;
+  --color-destructive-foreground: #F4F2F8;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-input: rgba(255, 255, 255, 0.08);
+  --color-ring: #6B53A3;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-display: var(--font-manrope), 'Manrope', system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), 'JetBrains Mono', ui-monospace, monospace;
+
+  --shadow-dk-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
+  --shadow-dk-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-dk-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+code, pre, kbd {
+  font-family: var(--font-mono);
+}
+
+/* Custom scrollbar (DKube style) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-dk-muted-darker);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-dk-muted);
 }
