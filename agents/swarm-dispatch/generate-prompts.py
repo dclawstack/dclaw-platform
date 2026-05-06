@@ -1,26 +1,21 @@
 #!/usr/bin/env python3
-"""Generate per-app v1.0 swarm prompts for all 67 DClaw apps."""
+"""Generate per-app v1.0 swarm prompts (spec + implementer) for all 67 DClaw apps."""
 
 import json
 import csv
 from pathlib import Path
+from colorsys import rgb_to_hls, hls_to_rgb
 
-# All 67 DClaw apps with metadata
 APPS = [
-    # P0 — Active
     {"id": "chat", "name": "DClaw Chat", "category": "Communication", "tagline": "AI conversations that remember", "color": "#3B82F6", "status": "P0 Active", "priority": 0, "icon": "💬"},
-    # P1 — Queued
     {"id": "flow", "name": "DClaw Flow", "category": "Automation", "tagline": "Connect anything, automate everything", "color": "#10B981", "status": "P1 Queued", "priority": 1, "icon": "🌊"},
     {"id": "agent", "name": "DClaw Agent", "category": "Platform", "tagline": "Build, share, and sell AI agents", "color": "#8B5CF6", "status": "P1 Queued", "priority": 1, "icon": "🤖"},
     {"id": "rag", "name": "DClaw RAG", "category": "Platform", "tagline": "Universal knowledge retrieval", "color": "#F59E0B", "status": "P1 Queued", "priority": 1, "icon": "🔍"},
-    # P2 — Queued
     {"id": "med", "name": "DClaw Med", "category": "Healthcare", "tagline": "Clinical intelligence at your fingertips", "color": "#EF4444", "status": "P2 Queued", "priority": 2, "icon": "🏥"},
     {"id": "learn", "name": "DClaw Learn", "category": "Education", "tagline": "Adaptive learning that works", "color": "#6366F1", "status": "P2 Queued", "priority": 2, "icon": "📚"},
     {"id": "code", "name": "DClaw Code", "category": "Development", "tagline": "AI-native IDE inside your desktop", "color": "#1F2937", "status": "P2 Queued", "priority": 2, "icon": "💻"},
-    # P3 — Queued
     {"id": "seo", "name": "DClaw SEO", "category": "Marketing", "tagline": "Rank higher with AI", "color": "#F97316", "status": "P3 Queued", "priority": 3, "icon": "📈"},
     {"id": "create", "name": "DClaw Create", "category": "Media", "tagline": "Generate anything", "color": "#EC4899", "status": "P3 Queued", "priority": 3, "icon": "🎨"},
-    # P4+ — Planned
     {"id": "legal", "name": "DClaw Legal", "category": "Legal", "tagline": "Contract review and case law research", "color": "#475569", "status": "P4 Planned", "priority": 4, "icon": "⚖️"},
     {"id": "finance", "name": "DClaw Finance", "category": "Finance", "tagline": "Financial modeling and risk analysis", "color": "#14B8A6", "status": "P4 Planned", "priority": 4, "icon": "💰"},
     {"id": "sales", "name": "DClaw Sales", "category": "Sales", "tagline": "CRM AI, email sequences, and forecasting", "color": "#F97316", "status": "P4 Planned", "priority": 4, "icon": "🎯"},
@@ -82,24 +77,7 @@ APPS = [
 ]
 
 
-def generate_prompt(app: dict, idx: int) -> str:
-    """Fill the APP_BUILDER_SWARM_PROMPT template for a single app."""
-    app_id = app["id"]
-    name = app["name"]
-    category = app["category"]
-    tagline = app["tagline"]
-    color = app["color"]
-    status = app["status"]
-    icon = app["icon"]
-    priority = app["priority"]
-
-    # Derive ports and DB name
-    frontend_port = 3000 + idx
-    backend_port = 8000 + idx
-    db_name = f"dclaw_{app_id}"
-
-    # Color variations
-    from colorsys import rgb_to_hls, hls_to_rgb
+def color_vars(color: str) -> tuple:
     def hex_to_rgb(h):
         h = h.lstrip("#")
         return tuple(int(h[i:i+2], 16) / 255.0 for i in (0, 2, 4))
@@ -110,19 +88,32 @@ def generate_prompt(app: dict, idx: int) -> str:
     light = rgb_to_hex(*hls_to_rgb(h, min(l + 0.15, 0.95), s))
     deep = rgb_to_hex(*hls_to_rgb(h, max(l - 0.15, 0.05), s))
     wash = rgb_to_hex(*hls_to_rgb(h, 0.96, s * 0.3))
+    return light, deep, wash
 
-    return f"""# {name} v1.0 — Swarm Agent Prompt
+
+def generate_spec_prompt(app: dict, idx: int) -> str:
+    app_id = app["id"]
+    name = app["name"]
+    category = app["category"]
+    tagline = app["tagline"]
+    color = app["color"]
+    status = app["status"]
+    icon = app["icon"]
+    frontend_port = 3000 + idx
+    backend_port = 8000 + idx
+    db_name = f"dclaw_{app_id}"
+    light, deep, wash = color_vars(color)
+
+    return f"""# {name} v1.0 — Spec Writer Prompt
 
 > **Agent Role:** Product Architect + Full-Stack Engineer + Design Systems Specialist
-> **Mission:** Take {name} from scaffold (v0.1.0) to production-ready v1.0 by researching the market, designing future-proof AI-native features, and producing a complete build specification.
-> **Output:** A single `v1.0-spec.md` document that serves as the blueprint for implementation.
+> **Mission:** Research the market and produce a complete v1.0 build specification for {name}.
+> **Output:** A single `v1.0-spec.md` document.
 > **Priority:** {status}
 
 ---
 
-## Context You Are Given
-
-### App Identity
+## App Identity
 ```yaml
 app_id: {app_id}
 name: {name}
@@ -139,350 +130,82 @@ brand_color: {color}
 icon: {icon}
 ```
 
-### Existing Scaffold
-The app currently has:
+## Existing Scaffold
 - **Frontend:** Next.js 14.2.28, Tailwind CSS, standalone output, dark theme
 - **Backend:** FastAPI, pydantic-settings, hatchling, SQLAlchemy 2.0 ready
 - **Database:** PostgreSQL via CloudNativePG
 - **Helm:** Standard DClaw chart with deployment, service, ingress, HPA
-- **Docs:** `docs/` directory with getting-started, guides, reference, troubleshooting, releases
+- **Docs:** `docs/` directory with stubs
 - **Mock API:** 2 endpoints (POST create, GET detail) with fake data
 
-### Stack Constraints (Non-Negotiable)
+## Stack Constraints
 | Layer | Technology | Constraint |
 |-------|------------|------------|
-| Frontend | Next.js 14 App Router | Must use App Router, not Pages Router |
-| Frontend | Tailwind CSS | Must use Tailwind v3+ with custom design tokens |
-| Frontend | React | Functional components + hooks only |
+| Frontend | Next.js 14 App Router | App Router only |
+| Frontend | Tailwind CSS | Custom design tokens |
 | Backend | FastAPI | pydantic v2, async routes, SQLAlchemy 2.0 |
 | Backend | Python | 3.11+, type hints on all public APIs |
 | Database | PostgreSQL | CloudNativePG for K8s, asyncpg for backend |
-| Desktop | Tauri v2 | Optional — only if desktop adds real value |
 | AI | Ollama | Local-first. Cloud fallback via OpenRouter |
 | PII | ClawShield | Must call Shield before any external API |
 | Auth | Logto | JWT tokens, RBAC: Owner/Admin/Developer/User/Guest |
 | Packaging | Helm 3 | Standard DClaw chart patterns |
 
----
-
-## Phase 1 — Market Intelligence & Gap Analysis
-
-### 1.1 Identify Top 5 Competitors
-Research the {category} category and identify the 5 most relevant competitors to {name}. For each:
-- Name + URL
-- Core value proposition
-- Pricing model
-- Key features (top 10)
-- Tech stack (if public)
-- User sentiment (G2, Capterra, Reddit, HN)
-
-### 1.2 Feature Matrix
-Build a comparative feature matrix:
-
-| Feature | {name} (v0.1) | Competitor A | Competitor B | Competitor C | Competitor D | Competitor E |
-|---------|---------------------------|--------------|--------------|--------------|--------------|--------------|
-| Feature 1 | ❌ | ✅ | ✅ | ❌ | ✅ | ✅ |
-| Feature 2 | ... | ... | ... | ... | ... | ... |
-
-### 1.3 Gap Analysis
-Identify the critical gaps:
-1. **Missing table-stakes features** — What do users expect that we don't have?
-2. **Differentiation opportunities** — What can we do that no competitor does?
-3. **AI-native gaps** — Where are competitors still using traditional workflows instead of AI?
-4. **Integration gaps** — What third-party tools do users expect integrations with?
-5. **UX friction points** — Where do competitors have clunky UX we can improve?
-
-### 1.4 Trends Analysis
-Research 2026-2027 trends in the {category} category:
-- Emerging AI capabilities (agents, multi-modal, reasoning)
-- UX patterns (conversational UI, inline AI, predictive actions)
-- Architecture trends (edge computing, local LLMs, federated learning)
-- Business model trends (usage-based, seat-based, outcome-based)
-
----
-
-## Phase 2 — Feature Design (v1.0)
-
-### 2.1 Feature Tiers
-
-#### P0 — Must Have (Launch Blockers)
-Features that are table stakes. Without these, {name} is not viable.
-
-| # | Feature | User Story | AI Integration? | Effort |
-|---|---------|-----------|-----------------|--------|
-| 1 | ... | As a ..., I want ... so that ... | Yes/No | S/M/L |
-
-#### P1 — Differentiators (Launch with)
-Features that set DClaw apart from competitors.
-
-| # | Feature | User Story | AI Integration? | Effort |
-|---|---------|-----------|-----------------|--------|
-| 1 | ... | ... | ... | ... |
-
-#### P2 — Nice to Have (Post-Launch)
-Features for v1.1 or v1.2.
-
-| # | Feature | User Story | AI Integration? | Effort |
-|---|---------|-----------|-----------------|--------|
-| 1 | ... | ... | ... | ... |
-
-### 2.2 AI-Native Design Principles
-Every feature must be evaluated against these principles:
-
-1. **Predictive over Reactive** — Can the AI anticipate what the user needs before they ask?
-2. **Generative over Manual** — Can the AI generate content/structure instead of requiring manual input?
-3. **Conversational over Form-Based** — Can natural language replace complex forms?
-4. **Contextual over Stateless** — Does the AI remember previous interactions and project context?
-5. **Local over Cloud** — Can this run on Ollama before falling back to OpenRouter?
-
-### 2.3 Feature Specifications
-For each P0 and P1 feature, write:
-
-```markdown
-### Feature: {{Feature Name}}
-
-**Priority:** P0/P1
-**Effort:** S/M/L
-**AI-Native Score:** 1-5 (how deeply AI is integrated)
-
-#### User Flow
-1. User opens ...
-2. System shows ...
-3. User interacts ...
-4. AI does ...
-5. Result is ...
-
-#### UI/UX Design
-- Screen layout (describe key zones)
-- Micro-interactions (hover states, loading, transitions)
-- Error states and empty states
-- Mobile adaptation
-
-#### API Contract
-```
-POST /api/v1/...
-Request: {{...}}
-Response: {{...}}
-```
-
-#### Data Model
-```python
-class FeatureModel(BaseModel):
-    id: UUID
-    ...
-```
-
-#### AI Prompt (if applicable)
-```
-System: You are a ...
-User: {{context}}
-Assistant: ...
-```
-
-#### Edge Cases
-- What happens when ...?
-- How do we handle ...?
-```
-
----
-
-## Phase 3 — Architecture Design
-
-### 3.1 System Architecture Diagram
-Create a Mermaid diagram showing:
-- Frontend (Next.js App Router) with key routes
-- Backend (FastAPI) with routers, services, repositories
-- Database schema (ER diagram)
-- AI layer (Ollama / OpenRouter / Shield)
-- External integrations
-- Message bus / cache (Redis)
-- File storage (MinIO) if needed
-
-### 3.2 Database Schema
-Write the complete SQLAlchemy models:
-
-```python
-# models.py
-from sqlalchemy import String, DateTime, ForeignKey, JSON, Integer, Float, Boolean, Text
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from datetime import datetime
-from uuid import uuid4
-
-class User(Base):
-    __tablename__ = "users"
-    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid4()))
-    ...
-```
-
-### 3.3 API Design
-Full OpenAPI-style spec for all endpoints:
-
-```yaml
-POST /api/v1/resources
-  summary: Create resource
-  request: {{...}}
-  response: {{...}}
-  errors: [...]
-```
-
-### 3.4 Key Code Snippets
-Provide exact, production-ready code for the 5 most critical functions:
-
-1. **Main service function** (the core business logic)
-2. **AI integration function** (Ollama/OpenRouter call with Shield)
-3. **Real-time update function** (WebSocket/SSE if needed)
-4. **Background job function** (if using Celery/ARQ)
-5. **Auth middleware function** (Logto JWT validation)
-
-Each snippet must be:
-- Fully typed
-- Error-handled
-- Logged
-- Documented with docstrings
-- Follow DClaw conventions
-
----
-
-## Phase 4 — Design System Application
-
-Apply the **DKube Design System** to {name}:
-
-### 4.1 Color Adaptation
-Map the app's brand color to the DKube palette:
-
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--dk-purple` | {color} | Primary actions, links |
-| `--dk-purple-light` | {light} | Hover states, accents |
-| `--dk-purple-deep` | {deep} | Pressed states |
-| `--dk-purple-wash` | {wash} | Section backgrounds |
-
-### 4.2 Typography
-- Display font: Manrope (headings)
-- Body font: Inter (body text)
-- Mono font: JetBrains Mono (code, data)
-
-### 4.3 Component Specifications
-For each custom component, specify:
-- Props interface
-- Default values
-- Responsive behavior
-- Accessibility (ARIA labels, keyboard navigation, focus rings)
-- Animation (enter/exit, hover, loading)
-
-### 4.4 Dark Mode
-{name} supports both light and dark modes. Define the dark mode color mapping:
-
-```css
-.dark {{
-  --dk-surface: #111013;
-  --dk-body: #F4F2F8;
-  --dk-muted: #9E9AAB;
-  ...
-}}
-```
-
----
-
-## Phase 5 — Testing Strategy
-
-### 5.1 Test Pyramid
-
-| Layer | Framework | Coverage Target | What to Test |
-|-------|-----------|-----------------|--------------|
-| Unit | pytest | 80%+ | Services, utilities, models |
-| Integration | pytest + httpx | 70%+ | API endpoints, DB transactions |
-| E2E | Playwright | Critical paths | User flows, AI interactions |
-| Contract | schemathesis | 100% | OpenAPI spec compliance |
-| Load | locust | Key endpoints | 100 concurrent users |
-| Security | bandit + safety | All code | Vulnerabilities, dependency audits |
-
-### 5.2 Critical Test Cases
-Write 10 specific test cases for the most important features:
-
-```python
-def test_ai_generates_valid_response():
-    '''Given context X, AI should return structured output Y.'''
-    ...
-```
-
-### 5.3 Test Data Strategy
-- Factory Boy / Faker for generating test data
-- Snapshot testing for AI outputs (within tolerance)
-- Seeded random for reproducible AI tests
-
----
-
-## Phase 6 — Roadmap & Lifecycle
-
-### 6.1 v1.0 Release Checklist
-- [ ] All P0 features implemented
-- [ ] Test coverage > 80%
-- [ ] Performance benchmarks pass
-- [ ] Security audit clean
-- [ ] Docs complete
-- [ ] Helm chart tested
-- [ ] Desktop build signed (if applicable)
-
-### 6.2 v1.1 — Quick Wins (4 weeks post-launch)
-- Feature A
-- Feature B
-- Performance optimization
-
-### 6.3 v1.2 — AI Enhancements (8 weeks post-launch)
-- Agent integration
-- Multi-modal support
-- Advanced reasoning
-
-### 6.4 v2.0 — Platform (Q1 2027)
-- Plugin ecosystem
-- Third-party integrations
-- Enterprise features
-
-### 6.5 Deprecation Policy
-- Features marked deprecated receive 6 months warning
-- API versions supported for 12 months
-- Migration guides provided for breaking changes
-
----
-
-## Phase 7 — Documentation Update
-
-Update the app's `docs/` directory with v1.0 content:
-
-### Getting Started
-- `installation.md` — Step-by-step with screenshots
-- `quickstart.md` — 5-minute tutorial
-- `configuration.md` — All env vars explained
-
-### Guides
-- `use-cases.md` — 5 real-world scenarios with walkthroughs
-- `best-practices.md` — Security, performance, cost optimization
-- `ai-prompts.md` — How to write effective prompts for this app
-
-### Reference
-- `architecture.md` — Updated system diagram
-- `stack.md` — Complete dependency list with versions
-- `api.md` — Full OpenAPI spec rendered
-
-### Troubleshooting
-- `common-issues.md` — 10 most common problems
-- `faq.md` — 20 questions
-
-### Releases
-- `changelog.md` — v0.1.0 → v1.0.0 changes
-- `roadmap.md` — v1.1, v1.2, v2.0
-
----
+## Phases
+
+### Phase 1 — Market Intelligence & Gap Analysis
+1. Identify top 5 competitors in {category}
+2. Build comparative feature matrix
+3. Identify gaps: table-stakes, differentiation, AI-native, integrations, UX
+4. Research 2026-2027 trends
+
+### Phase 2 — Feature Design (v1.0)
+- **P0:** Must-have launch blockers
+- **P1:** Differentiators
+- **P2:** Nice-to-have post-launch
+
+For each P0/P1 feature specify: user flow, UI/UX design, API contract, data model, AI prompt (if applicable), edge cases.
+
+### Phase 3 — Architecture Design
+- Mermaid system architecture diagram
+- Complete SQLAlchemy models
+- Full OpenAPI-style API spec
+- 5 production-ready code snippets (service, AI integration, real-time, background job, auth)
+
+### Phase 4 — Design System
+Map brand color to DKube palette:
+| Token | Value |
+|-------|-------|
+| `--dk-purple` | {color} |
+| `--dk-purple-light` | {light} |
+| `--dk-purple-deep` | {deep} |
+| `--dk-purple-wash` | {wash} |
+
+Typography: Manrope (display), Inter (body), JetBrains Mono (mono).
+
+### Phase 5 — Testing Strategy
+| Layer | Framework | Coverage |
+|-------|-----------|----------|
+| Unit | pytest | 80%+ |
+| Integration | pytest + httpx | 70%+ |
+| E2E | Playwright | Critical paths |
+| Contract | schemathesis | 100% |
+| Load | locust | 100 concurrent |
+| Security | bandit + safety | All code |
+
+### Phase 6 — Roadmap
+- v1.0 release checklist
+- v1.1 quick wins (4 weeks)
+- v1.2 AI enhancements (8 weeks)
+- v2.0 platform (Q1 2027)
+
+### Phase 7 — Documentation Update
+Fill docs with: installation, quickstart, configuration, use-cases, best-practices, architecture, stack, API, troubleshooting, changelog, roadmap.
 
 ## Output Format
-
-Produce a single file: `v1.0-spec.md`
-
-Structure:
+Produce `v1.0-spec.md`:
 ```
 # {name} v1.0 Specification
-
 ## Executive Summary
 ## Market Intelligence
 ## Feature Design
@@ -499,6 +222,247 @@ This document must be comprehensive enough that a skilled developer can build v1
 """
 
 
+def generate_impl_prompt(app: dict, idx: int) -> str:
+    app_id = app["id"]
+    name = app["name"]
+    category = app["category"]
+    tagline = app["tagline"]
+    color = app["color"]
+    status = app["status"]
+    icon = app["icon"]
+    frontend_port = 3000 + idx
+    backend_port = 8000 + idx
+    db_name = f"dclaw_{app_id}"
+    light, deep, wash = color_vars(color)
+
+    return f"""# {name} v1.0 — Implementer Prompt
+
+> **Agent Role:** Senior Full-Stack Engineer + QA Engineer + Technical Writer
+> **Mission:** Build {name} from scaffold to working v1.0. Write code, tests, and docs. You do NOT write specs — you BUILD.
+> **Output:** Fully functional app with passing tests and real docs.
+> **Priority:** {status}
+
+---
+
+## Golden Rules
+1. **Read Before You Write** — Examine existing files before modifying.
+2. **Test-Driven** — Write test first, then implementation.
+3. **Commit Per Feature** — Format: `feat(scope): description`.
+4. **No Stubs** — Every function does real work. No `pass`, no `TODO`.
+5. **Type Safety** — Every Python function typed. Every TS prop has interface.
+6. **Error Handling** — Every async call has try/except. Proper HTTP codes.
+7. **Security First** — PII through ClawShield. Auth validates JWT.
+8. **Dark Mode Default** — All UI must look correct in dark mode.
+
+## App Identity
+```yaml
+app_id: {app_id}
+name: {name}
+category: {category}
+tagline: {tagline}
+current_version: 0.1.0
+target_version: 1.0.0
+status: {status}
+repo: https://github.com/dclawstack/dclaw-{app_id}
+docs: https://docs.dclawstack.io/apps/{app_id}
+frontend_port: {frontend_port}
+backend_port: {backend_port}
+db_name: {db_name}
+brand_color: {color}
+icon: {icon}
+```
+
+## Implementation Order
+
+### Phase 0 — Setup & Audit
+```bash
+git clone https://github.com/dclawstack/dclaw-{app_id}.git
+cd dclaw-{app_id}
+git checkout -b v1.0-implementation
+```
+Read ALL existing files. Verify builds. Commit: `chore: audit scaffold`.
+
+### Phase 1 — Database Layer
+- Design schema for {category} domain
+- SQLAlchemy models in `backend/app/models/`
+  - Every model: `id` (UUID), `created_at`, `updated_at`, `deleted_at`
+  - Use `Mapped[]` syntax, relationships, indexes
+- Alembic migration: `alembic revision --autogenerate -m "v1.0 schema"`
+- Model unit tests in `backend/tests/unit/test_models.py`
+- Commit: `feat(db): add v1.0 schema`
+
+### Phase 2 — Backend Core
+- **Config:** `backend/app/core/config.py` with env vars
+- **Dependencies:** `backend/app/core/deps.py` with DB session + auth
+- **Exceptions:** Custom exceptions in `backend/app/core/exceptions.py`
+- **Repositories:** `backend/app/repositories/` — CRUD per model, typed, handle None
+- **Services:** `backend/app/services/` — business logic, docstrings, error handling, logging
+- Commit: `feat(backend): add repositories and services`
+
+### Phase 3 — Backend API
+- **Auth middleware:** Verify JWT from Logto. Extract user + roles. 401/403 correctly.
+- **Routers:** Replace mocks in `backend/app/api/v1/`
+  - Prefix: `/api/v1/{app_id}`
+  - Typed request/response models
+  - Proper HTTP codes (201 create, 200/204 update, 404 not found)
+  - `Depends()` for auth and DB
+  - Try/except with custom handlers
+- **AI Integration** (if applicable):
+  - `backend/app/services/ai_service.py`
+  - ClawShield → Ollama → OpenRouter fallback
+  - Log token usage and latency
+- **Background jobs** (if needed): Celery/ARQ with Redis
+- **WebSocket/SSE** (if real-time): Authenticated, graceful disconnect
+- Commit per router: `feat(api): add {{resource}} CRUD`
+
+### Phase 4 — Frontend Foundation
+- **Design tokens:** Update `tailwind.config.ts` with brand color `{color}`
+- **Global styles:** CSS variables in `globals.css`, dark mode overrides
+- **API client:** `frontend/src/lib/api.ts` — Axios with JWT interceptor, 401 redirect
+- **Auth context:** `frontend/src/contexts/AuthContext.tsx`
+- Commit: `feat(frontend): add tokens, api client, auth`
+
+### Phase 5 — Frontend Pages & Components
+- **Layout:** DKube fonts (Manrope, Inter, JetBrains Mono), dark mode, toast provider
+- **Dashboard:** App shell with responsive sidebar
+- **List views:** Data table with sort/filter/paginate/search, empty state, skeletons, bulk actions
+- **Detail views:** Read-only + edit toggle, related data tabs, activity log
+- **Forms:** React Hook Form + Zod, AI-assisted fields, auto-save drafts, confirmation modals
+- **AI components** (if applicable): Chat bubble, streaming text, code block renderer, feedback buttons
+- Commit per page: `feat(frontend): add {{page}}`
+
+### Phase 6 — Testing
+- **Unit:** `backend/tests/unit/` — pytest-asyncio, mock externals, 80%+ coverage
+- **Integration:** `backend/tests/integration/` — httpx.AsyncClient, test every endpoint, auth, CRUD, errors
+- **E2E:** `frontend/e2e/` — Playwright, critical flows, dark mode, responsive
+- Run all tests. Fix failures. Do not proceed until green.
+- Commit: `test: add unit, integration, and e2e tests`
+
+### Phase 7 — Documentation
+Replace all stubs with real content:
+- **Getting Started:** installation, quickstart (5-min), configuration
+- **Guides:** 3-5 use-cases, best-practices, ai-prompts (if AI app)
+- **Reference:** architecture (Mermaid), stack (deps), API (OpenAPI render)
+- **Troubleshooting:** 5-10 common issues, 10-15 FAQ
+- **Releases:** changelog v0.1.0→v1.0.0, roadmap v1.1/v1.2
+- Commit: `docs: write v1.0 documentation`
+
+### Phase 8 — Helm & Deployment
+- Update `helm/values.yaml`: image tags, resources (frontend 500m/512Mi, backend 1000m/1Gi), ingress host `{app_id}.dclawstack.io`, HPA min 2 max 10
+- Verify: `helm lint helm/`
+- Commit: `chore(helm): update for v1.0`
+
+### Phase 9 — Final Validation
+```bash
+cd frontend && npm run build        # 0 errors
+cd backend && ruff check app/       # 0 violations
+cd backend && pytest                # 0 failures
+cd frontend && npx playwright test  # 0 failures
+```
+- Bump version to 1.0.0 in package.json, pyproject.toml, docs/meta.json
+- Final commit: `chore: bump version to 1.0.0`
+- Push: `git push origin v1.0-implementation`
+- Open PR on GitHub
+
+## Code Quality Checklist (Before Every Commit)
+- [ ] `ruff check app/` passes
+- [ ] `mypy app/` passes
+- [ ] `pytest` passes
+- [ ] `npm run build` passes
+- [ ] No `console.log` or `print()` (use logger)
+- [ ] No hardcoded secrets
+- [ ] No `TODO`/`FIXME` in production code
+- [ ] Every route has auth middleware
+- [ ] Every DB query uses parameterized statements
+- [ ] Every AI call goes through ClawShield
+
+## File Naming Conventions
+| Type | Pattern | Example |
+|------|---------|---------|
+| Models | `app/models/{{entity}}.py` | `app/models/conversation.py` |
+| Repositories | `app/repositories/{{entity}}_repo.py` | `app/repositories/conversation_repo.py` |
+| Services | `app/services/{{feature}}_service.py` | `app/services/chat_service.py` |
+| Routers | `app/api/v1/{{entity}}.py` | `app/api/v1/conversations.py` |
+| Schemas | `app/schemas/{{entity}}.py` | `app/schemas/conversation.py` |
+| Components | `src/components/{{Name}}.tsx` | `src/components/ChatBubble.tsx` |
+| Hooks | `src/hooks/use{{Feature}}.ts` | `src/hooks/useChat.ts` |
+| Pages | `src/app/{{route}}/page.tsx` | `src/app/chat/page.tsx` |
+| Tests (BE) | `tests/{{layer}}/test_{{module}}.py` | `tests/unit/test_chat_service.py` |
+| Tests (FE) | `e2e/{{feature}}.spec.ts` | `e2e/chat.spec.ts` |
+
+## AI Integration Pattern (If Applicable)
+```python
+# backend/app/services/ai_service.py
+import httpx
+from app.core.config import settings
+from app.core.shield import shield
+
+async def generate_with_ai(prompt: str, user_id: str, model: str = "llama3.2") -> str:
+    clean_prompt = await shield.scrub(prompt, user_id=user_id)
+    try:
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            resp = await client.post(
+                f"{{settings.OLLAMA_URL}}/api/generate",
+                json={{"model": model, "prompt": clean_prompt, "stream": False}},
+            )
+            resp.raise_for_status()
+            return resp.json()["response"]
+    except Exception:
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            resp = await client.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={"Authorization": f"Bearer {{settings.OPENROUTER_KEY}}"},
+                json={{
+                    "model": "anthropic/claude-3.5-sonnet",
+                    "messages": [{{"role": "user", "content": clean_prompt}}],
+                }},
+            )
+            resp.raise_for_status()
+            return resp.json()["choices"][0]["message"]["content"]
+```
+
+## Auth Middleware Pattern
+```python
+from fastapi import Depends, HTTPException
+from fastapi.security import HTTPBearer
+import jwt
+
+security = HTTPBearer()
+
+async def get_current_user(credentials=Depends(security)):
+    try:
+        payload = jwt.decode(
+            credentials.credentials,
+            settings.LOGTO_JWKS,
+            algorithms=["RS256"],
+            audience=settings.LOGTO_AUDIENCE,
+        )
+        user_id = payload.get("sub")
+        if not user_id:
+            raise HTTPException(status_code=401, detail="Invalid token")
+        return user
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=401, detail="Token expired")
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+```
+
+## Final Checklist
+- [ ] Real SQLAlchemy models + Alembic migrations
+- [ ] Real FastAPI routers with full CRUD + auth
+- [ ] Real business logic in services
+- [ ] Real Next.js pages with working UI
+- [ ] Passing pytest (unit + integration)
+- [ ] Passing Playwright E2E
+- [ ] Real documentation in `docs/`
+- [ ] Updated Helm chart
+- [ ] Zero lint errors, zero type errors
+- [ ] PR on GitHub ready for review
+
+This is working code, not a spec.
+"""
+
+
 def main():
     base = Path(__file__).parent
     prompts_dir = base / "prompts"
@@ -509,9 +473,15 @@ def main():
 
     for idx, app in enumerate(APPS, start=1):
         app_id = app["id"]
-        prompt_text = generate_prompt(app, idx)
-        prompt_path = prompts_dir / f"{app_id}-v1.0-prompt.md"
-        prompt_path.write_text(prompt_text, encoding="utf-8")
+
+        spec_text = generate_spec_prompt(app, idx)
+        impl_text = generate_impl_prompt(app, idx)
+
+        spec_path = prompts_dir / f"{app_id}-v1.0-spec-prompt.md"
+        impl_path = prompts_dir / f"{app_id}-v1.0-impl-prompt.md"
+
+        spec_path.write_text(spec_text, encoding="utf-8")
+        impl_path.write_text(impl_text, encoding="utf-8")
 
         manifest.append({
             "app_id": app_id,
@@ -523,7 +493,8 @@ def main():
             "priority": app["priority"],
             "icon": app["icon"],
             "repo_url": f"https://github.com/dclawstack/dclaw-{app_id}",
-            "prompt_file": str(prompt_path.relative_to(base)),
+            "spec_prompt": str(spec_path.relative_to(base)),
+            "impl_prompt": str(impl_path.relative_to(base)),
             "frontend_port": 3000 + idx,
             "backend_port": 8000 + idx,
             "db_name": f"dclaw_{app_id}",
@@ -534,24 +505,23 @@ def main():
             "name": app["name"],
             "priority": app["priority"],
             "repo_url": f"https://github.com/dclawstack/dclaw-{app_id}",
-            "prompt_path": str(prompt_path.relative_to(base)),
+            "spec_prompt": str(spec_path.relative_to(base)),
+            "impl_prompt": str(impl_path.relative_to(base)),
             "status": app["status"],
         })
 
         print(f"✅ {app_id}")
 
-    # Write manifest
     manifest_path = base / "apps-manifest.json"
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
-    # Write dispatch CSV
     dispatch_path = base / "dispatch.csv"
     with dispatch_path.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["app_id", "name", "priority", "repo_url", "prompt_path", "status"])
+        writer = csv.DictWriter(f, fieldnames=["app_id", "name", "priority", "repo_url", "spec_prompt", "impl_prompt", "status"])
         writer.writeheader()
         writer.writerows(dispatch)
 
-    print(f"\nDone. {len(APPS)} prompts generated.")
+    print(f"\nDone. {len(APPS)} apps × 2 prompts = {len(APPS)*2} files.")
     print(f"Manifest: {manifest_path}")
     print(f"Dispatch: {dispatch_path}")
 

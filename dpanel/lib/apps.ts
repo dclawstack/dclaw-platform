@@ -88,7 +88,7 @@ export const apps: App[] = [
       "Desktop app via Tauri",
       "End-to-end encrypted messaging",
     ],
-    version: "0.2.0",
+    version: "1.0.0",
     icon: MessageSquare,
     color: "#3B82F6",
     bgColor: "rgba(59, 130, 246, 0.15)",
