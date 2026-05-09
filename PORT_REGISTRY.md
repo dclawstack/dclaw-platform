@@ -241,3 +241,7 @@ flag.StringVar(&metricsAddr, "metrics-bind-address", ":8089", ...)
 | **8153** | dclaw-flow backend | Local + K8s | Shell | ✅ Assigned |
 
 | **8154** | dclaw-create backend | Local + K8s | Shell | ✅ Assigned |
+
+| **3067** | DClaw Agent frontend dev | Local dev | Shell | ✅ Assigned |
+| **8155** | dclaw-risk backend | Local + K8s | Shell | ✅ Assigned |
+| **3068** | DClaw Risk frontend dev | Local dev | Shell | ✅ Assigned |
