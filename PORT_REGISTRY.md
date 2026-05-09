@@ -224,3 +224,16 @@ flag.StringVar(&metricsAddr, "metrics-bind-address", ":8089", ...)
 | **8144** | dclaw-space backend | Local + K8s | Shell | ✅ Assigned |
 | **8145** | dclaw-lease backend | Local + K8s | Shell | ✅ Assigned |
 | **8146** | dclaw-vendor backend | Local + K8s | Shell | ✅ Assigned |
+
+| **8147** | dclaw-patent backend | Local + K8s | Shell | ✅ Assigned |
+| **8148** | dclaw-trademark backend | Local + K8s | Shell | ✅ Assigned |
+| **8149** | dclaw-contract backend | Local + K8s | Shell | ✅ Assigned |
+| **8150** | dclaw-continuity backend | Local + K8s | Shell | ✅ Assigned |
+| **8151** | dclaw-crisis backend | Local + K8s | Shell | ✅ Assigned |
+| **8152** | dclaw-knowledge backend | Local + K8s | Shell | ✅ Assigned |
+| **3061** | DClaw Patent frontend dev | Local dev | Shell | ✅ Assigned |
+| **3062** | DClaw Trademark frontend dev | Local dev | Shell | ✅ Assigned |
+| **3063** | DClaw Contract frontend dev | Local dev | Shell | ✅ Assigned |
+| **3064** | DClaw Continuity frontend dev | Local dev | Shell | ✅ Assigned |
+| **3065** | DClaw Crisis frontend dev | Local dev | Shell | ✅ Assigned |
+| **3066** | DClaw Knowledge frontend dev | Local dev | Shell | ✅ Assigned |
