@@ -1,0 +1,121 @@
+# Shared hub postgres for the dclaw stack.
+#
+# Pattern documented in: ~/DClaw-Stack/PATCH-2026-05-15-shared-hub-postgres.md
+#
+# Per-app `dclaw-<app>-db-rw` ExternalName services already alias to
+# `postgres.dclaw.svc.cluster.local`. This manifest provides the actual pod,
+# durable storage (PVC), and an init script that pre-creates one database
+# per app (`dclaw_<app>`) on first boot.
+#
+# Scope: HUB TESTBED ONLY. Plain `dclaw:dclaw` credentials, single replica,
+# 10Gi local-path PVC. Not for end-user installs — those ship each app with
+# its own bundled postgres (docker-compose or Helm chart).
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+  namespace: dclaw
+  labels:
+    app: postgres
+    app.kubernetes.io/part-of: dclaw-platform
+    app.kubernetes.io/component: shared-db
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+  namespace: dclaw
+  labels:
+    app: postgres
+    app.kubernetes.io/part-of: dclaw-platform
+data:
+  # Runs once on first PGDATA init. Idempotent via `\gexec` so re-running
+  # against an already-populated cluster is safe (creates only what's missing).
+  01-create-dclaw-databases.sh: |
+    #!/bin/bash
+    set -euo pipefail
+    DBS=(dclaw_agent dclaw_chat dclaw_design dclaw_flow dclaw_research dclaw_video)
+    # dclaw_learn is created automatically by POSTGRES_DB env.
+    for db in "${DBS[@]}"; do
+      echo "ensuring database $db ..."
+      psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d postgres <<-SQL
+        SELECT 'CREATE DATABASE $db'
+        WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$db')\gexec
+    SQL
+    done
+    echo "all dclaw_* databases ensured."
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: dclaw
+  labels:
+    app: postgres
+    app.kubernetes.io/part-of: dclaw-platform
+    app.kubernetes.io/component: shared-db
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate          # PVC is RWO; rolling update would deadlock on the volume.
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: dclaw
+            - name: POSTGRES_PASSWORD
+              value: dclaw
+            - name: POSTGRES_DB
+              value: dclaw_learn
+            # Required when using a custom mount point for data — postgres
+            # refuses to init into a directory that contains the `lost+found`
+            # entry that K8s PVCs ship with.
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+            - name: init-scripts
+              mountPath: /docker-entrypoint-initdb.d
+          readinessProbe:
+            exec:
+              command: [pg_isready, -U, dclaw, -d, postgres]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            exec:
+              command: [pg_isready, -U, dclaw, -d, postgres]
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            timeoutSeconds: 5
+          resources:
+            requests: { cpu: 100m, memory: 256Mi }
+            limits:   { cpu: 1,    memory: 1Gi   }
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: postgres-data
+        - name: init-scripts
+          configMap:
+            name: postgres-init
+            defaultMode: 0755
