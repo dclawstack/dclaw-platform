@@ -141,6 +141,15 @@ $(printf -- '- %s\n' "${TO_COPY[@]}")"
 
   if $PUSH; then
     branch=$(git -C "$repo" rev-parse --abbrev-ref HEAD)
+    # Local clones on the hub may be stale relative to origin (other devs
+    # pushed work since we last fetched). Rebase the sync commit on top of
+    # remote main before pushing to keep history linear and avoid merge
+    # commits.
+    if ! git -C "$repo" pull --rebase origin "$branch" >/dev/null 2>&1; then
+      printf '  ⚠  %s — synced locally; rebase failed (manual resolve needed)\n' "$app"
+      ((fail_count++))
+      continue
+    fi
     if git -C "$repo" push origin "$branch" >/dev/null 2>&1; then
       printf '  ✓  %s — synced + pushed: %s\n' "$app" "${TO_COPY[*]}"
     else
