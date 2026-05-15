@@ -1,0 +1,39 @@
+# Cross-namespace RBAC for the dclaw/dpanel-api Deployment.
+#
+# The dpanel-api reads its app registry from the ConfigMap
+# `dclaw-apps-registry` in the `dclaw-core` namespace. The pod runs in
+# the `dclaw` namespace with the default ServiceAccount, so it needs
+# explicit Role + RoleBinding in dclaw-core to access the registry.
+#
+# Applied 2026-05-15 to recover dpanel after revival.
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: read-dclaw-apps-registry
+  namespace: dclaw-core
+  labels:
+    app.kubernetes.io/part-of: dclaw-platform
+    app.kubernetes.io/component: dpanel-api-rbac
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    resourceNames: ["dclaw-apps-registry"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dclaw-dpanel-api-reads-registry
+  namespace: dclaw-core
+  labels:
+    app.kubernetes.io/part-of: dclaw-platform
+    app.kubernetes.io/component: dpanel-api-rbac
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: dclaw
+roleRef:
+  kind: Role
+  name: read-dclaw-apps-registry
+  apiGroup: rbac.authorization.k8s.io
