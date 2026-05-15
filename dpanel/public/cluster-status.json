@@ -1,0 +1,2223 @@
+{
+  "generated_at": "2026-05-15T09:01:13.555707+00:00",
+  "repos": {
+    "dclaw-agent": {
+      "repo": "dclaw-agent",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "becf2b3",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-api": {
+      "repo": "dclaw-api",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "7e3e25b",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-assets": {
+      "repo": "dclaw-assets",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "f840c84",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-audit": {
+      "repo": "dclaw-audit",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "56bf1d9",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-backup": {
+      "repo": "dclaw-backup",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "85e4be9",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-building": {
+      "repo": "dclaw-building",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "1da4cb6",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-calendar": {
+      "repo": "dclaw-calendar",
+      "human_commits_7d": 6,
+      "last_human_commit": {
+        "sha": "439d373",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 6
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-carbon": {
+      "repo": "dclaw-carbon",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "b90045f",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-chat": {
+      "repo": "dclaw-chat",
+      "human_commits_7d": 22,
+      "last_human_commit": {
+        "sha": "f85a560",
+        "date": "2026-05-14",
+        "author": "tharuni-01",
+        "msg": "Merge pull request #15 from dclawstack/claude/issue-14-20260"
+      },
+      "contributors_7d": [
+        {
+          "login": "tharuni-01",
+          "commits": 20
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "Build Unsigned Desktop",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-unsigned.yml",
+        "claude-code-review.yml",
+        "claude.yml",
+        "deploy-chat.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-code": {
+      "repo": "dclaw-code",
+      "human_commits_7d": 8,
+      "last_human_commit": {
+        "sha": "992fa95",
+        "date": "2026-05-12",
+        "author": "ocagentexp-lgtm",
+        "msg": "Merge pull request #1 from dclawstack/add-claude-github-acti"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 4
+        },
+        {
+          "login": "ocagentexp-lgtm",
+          "commits": 3
+        },
+        {
+          "login": "Kiran-Vijapure",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "Claude Code Review",
+        "conclusion": "success",
+        "branch": "add-claude-github-actions-1778324118335",
+        "at": "2026-05-09"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-frontend.yml",
+        "claude-code-review.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-compliance": {
+      "repo": "dclaw-compliance",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "4323796",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-continuity": {
+      "repo": "dclaw-continuity",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "27f2c6a",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-contract": {
+      "repo": "dclaw-contract",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "b88beeb",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-cost": {
+      "repo": "dclaw-cost",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "af4b0c3",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-create": {
+      "repo": "dclaw-create",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "9af1f63",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-crisis": {
+      "repo": "dclaw-crisis",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "eb1c0b0",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-crm": {
+      "repo": "dclaw-crm",
+      "human_commits_7d": 7,
+      "last_human_commit": {
+        "sha": "efa155c",
+        "date": "2026-05-09",
+        "author": "satish1432",
+        "msg": "docs: add v1.2 roadmap, DKube design system, and Obsidian va"
+      },
+      "contributors_7d": [
+        {
+          "login": "satish1432",
+          "commits": 4
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 3
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "ci.yml",
+        "claude-code-review.yml",
+        "claude.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-data": {
+      "repo": "dclaw-data",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "70a7717",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-deploy": {
+      "repo": "dclaw-deploy",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "add691d",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-design": {
+      "repo": "dclaw-design",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "8c7c68c",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard (SUBSTAN"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-desktop.yml",
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-doc": {
+      "repo": "dclaw-doc",
+      "human_commits_7d": 6,
+      "last_human_commit": {
+        "sha": "0429fda",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 6
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-email": {
+      "repo": "dclaw-email",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "f6b0d34",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-energy": {
+      "repo": "dclaw-energy",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "6fc74a2",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-finance": {
+      "repo": "dclaw-finance",
+      "human_commits_7d": 7,
+      "last_human_commit": {
+        "sha": "1328227",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "chandraja12345",
+          "commits": 4
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 3
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "ci.yml",
+        "claude-code-review.yml",
+        "claude.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-fleet": {
+      "repo": "dclaw-fleet",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "15f86c7",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-flow": {
+      "repo": "dclaw-flow",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "bbf0629",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard (SUBSTAN"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-forecast": {
+      "repo": "dclaw-forecast",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "e939d7d",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-hr": {
+      "repo": "dclaw-hr",
+      "human_commits_7d": 16,
+      "last_human_commit": {
+        "sha": "bc7bf04",
+        "date": "2026-05-11",
+        "author": "ramsai0206",
+        "msg": "feat: implement all P2 features \u2014 eNPS, 1-on-1s, Goals, Reco"
+      },
+      "contributors_7d": [
+        {
+          "login": "ramsai0206",
+          "commits": 13
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 3
+        }
+      ],
+      "open_prs": 1,
+      "open_pr_titles": [
+        "#3 feat: DClaw HR v1.2 \u2014 P0 + P1 features"
+      ],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "ci.yml",
+        "claude-code-review.yml",
+        "claude.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-inventory": {
+      "repo": "dclaw-inventory",
+      "human_commits_7d": 7,
+      "last_human_commit": {
+        "sha": "623395b",
+        "date": "2026-05-09",
+        "author": "JagadeeshAvas",
+        "msg": "docs: add Obsidian vault with design system and feature plan"
+      },
+      "contributors_7d": [
+        {
+          "login": "JagadeeshAvas",
+          "commits": 5
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "ci.yml",
+        "claude-code-review.yml",
+        "claude.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-knowledge": {
+      "repo": "dclaw-knowledge",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "11a057b",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-learn": {
+      "repo": "dclaw-learn",
+      "human_commits_7d": 5,
+      "last_human_commit": {
+        "sha": "a02ed83",
+        "date": "2026-05-12",
+        "author": "Dev-OC-SB",
+        "msg": "v1.2"
+      },
+      "contributors_7d": [
+        {
+          "login": "Dev-OC-SB",
+          "commits": 2
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        },
+        {
+          "login": "SB-OC",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "Build Backend",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-12"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-frontend.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-lease": {
+      "repo": "dclaw-lease",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "06e825c",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-legal": {
+      "repo": "dclaw-legal",
+      "human_commits_7d": 5,
+      "last_human_commit": {
+        "sha": "8be55bd",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 4
+        },
+        {
+          "login": "maheshbhairi8766",
+          "commits": 1
+        }
+      ],
+      "open_prs": 1,
+      "open_pr_titles": [
+        "#1 feat: v1.2 P0 \u2014 templates, compare, batch, e-signa"
+      ],
+      "last_workflow": null,
+      "has_claude_yml": false,
+      "workflow_files": [],
+      "agents_md_unfilled": false
+    },
+    "dclaw-maintenance": {
+      "repo": "dclaw-maintenance",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "9470e70",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-marketing": {
+      "repo": "dclaw-marketing",
+      "human_commits_7d": 49,
+      "last_human_commit": {
+        "sha": "615e13e",
+        "date": "2026-05-14",
+        "author": "Deepro713",
+        "msg": "docs(reports): Sprint 4 status report (v1.1.2) (#340)"
+      },
+      "contributors_7d": [
+        {
+          "login": "Deepro713",
+          "commits": 49
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "Poll and merge labeled PRs",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "auto-merge.yml",
+        "ci.yml",
+        "claude-code-review.yml",
+        "claude.yml",
+        "project-automation.yml",
+        "project-status-sync.yml",
+        "release.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-med": {
+      "repo": "dclaw-med",
+      "human_commits_7d": 35,
+      "last_human_commit": {
+        "sha": "c576a3f",
+        "date": "2026-05-15",
+        "author": "allenantony007",
+        "msg": "Merge pull request #14 from dclawstack/feat/patient-portal"
+      },
+      "contributors_7d": [
+        {
+          "login": "allenantony007",
+          "commits": 29
+        },
+        {
+          "login": "udai-ai",
+          "commits": 3
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        },
+        {
+          "login": "allenantony-oc",
+          "commits": 1
+        }
+      ],
+      "open_prs": 1,
+      "open_pr_titles": [
+        "#15 chore(polish): P1 follow-ups \u2014 naming, drug-class "
+      ],
+      "last_workflow": {
+        "name": "Claude Code Review",
+        "conclusion": "failure",
+        "branch": "chore/p1-polish",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-frontend.yml",
+        "claude-code-review.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-meet": {
+      "repo": "dclaw-meet",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "3ad243a",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-migrate": {
+      "repo": "dclaw-migrate",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "677f0a5",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-monitor": {
+      "repo": "dclaw-monitor",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "2a0d9e7",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-network": {
+      "repo": "dclaw-network",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "e7413e7",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-offboard": {
+      "repo": "dclaw-offboard",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "0d0a1aa",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-onboard": {
+      "repo": "dclaw-onboard",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "264a807",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-patent": {
+      "repo": "dclaw-patent",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "3789580",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-policy": {
+      "repo": "dclaw-policy",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "c8315e8",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-prd-tmp": {
+      "repo": "dclaw-prd-tmp",
+      "human_commits_7d": 0,
+      "last_human_commit": null,
+      "contributors_7d": [],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": null,
+      "has_claude_yml": false,
+      "workflow_files": [],
+      "agents_md_unfilled": null
+    },
+    "dclaw-project": {
+      "repo": "dclaw-project",
+      "human_commits_7d": 4,
+      "last_human_commit": {
+        "sha": "2ec01a0",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "docs(AGENTS): add default_factory anti-pattern"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 4
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-quality": {
+      "repo": "dclaw-quality",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "7b8e90e",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-rag": {
+      "repo": "dclaw-rag",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "65020ba",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-real-estate": {
+      "repo": "dclaw-real-estate",
+      "human_commits_7d": 7,
+      "last_human_commit": {
+        "sha": "0caa3a3",
+        "date": "2026-05-11",
+        "author": "sureshOC",
+        "msg": "Fill PLAN-v1.2 with YC-informed real estate features and app"
+      },
+      "contributors_7d": [
+        {
+          "login": "sureshOC",
+          "commits": 5
+        },
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "ci.yml",
+        "claude-code-review.yml",
+        "claude.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-recruit": {
+      "repo": "dclaw-recruit",
+      "human_commits_7d": 6,
+      "last_human_commit": {
+        "sha": "2d78f01",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 6
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-research": {
+      "repo": "dclaw-research",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "ed204e3",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-desktop.yml",
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-risk": {
+      "repo": "dclaw-risk",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "87a7d8b",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-route": {
+      "repo": "dclaw-route",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "6dcfd89",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-sales": {
+      "repo": "dclaw-sales",
+      "human_commits_7d": 6,
+      "last_human_commit": {
+        "sha": "e1feee0",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 6
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-scaffold": {
+      "repo": "dclaw-scaffold",
+      "human_commits_7d": 3,
+      "last_human_commit": {
+        "sha": "1c40684",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "fix(scaffold): restore package-lock.json"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 3
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-secure": {
+      "repo": "dclaw-secure",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "459fcf6",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-seo": {
+      "repo": "dclaw-seo",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "da28ce2",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml",
+        "deploy.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-sheet": {
+      "repo": "dclaw-sheet",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "526bd91",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-slide": {
+      "repo": "dclaw-slide",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "a4c0d47",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-space": {
+      "repo": "dclaw-space",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "6138d78",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-support": {
+      "repo": "dclaw-support",
+      "human_commits_7d": 4,
+      "last_human_commit": {
+        "sha": "0ef5790",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "docs(AGENTS): add default_factory anti-pattern"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 4
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": false
+    },
+    "dclaw-task": {
+      "repo": "dclaw-task",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "dfc180d",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-test": {
+      "repo": "dclaw-test",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "71eba08",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-trademark": {
+      "repo": "dclaw-trademark",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "cd44dc5",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-train": {
+      "repo": "dclaw-train",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "e32b335",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-translate": {
+      "repo": "dclaw-translate",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "40d6124",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-vendor": {
+      "repo": "dclaw-vendor",
+      "human_commits_7d": 5,
+      "last_human_commit": {
+        "sha": "4d2cfab",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "docs(AGENTS): add default_factory anti-pattern"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 5
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-video": {
+      "repo": "dclaw-video",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "e3a0bfd",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": true,
+      "workflow_files": [
+        "build-backend.yml",
+        "build-desktop.yml",
+        "build-frontend.yml",
+        "ci.yml",
+        "claude.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-warehouse": {
+      "repo": "dclaw-warehouse",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "da8232e",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-waste": {
+      "repo": "dclaw-waste",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "83147bf",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-water": {
+      "repo": "dclaw-water",
+      "human_commits_7d": 1,
+      "last_human_commit": {
+        "sha": "e2ef579",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "chore: scaffold with latest dclaw-scaffold standard"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 1
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "failure",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-wiki": {
+      "repo": "dclaw-wiki",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "7f4017a",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    },
+    "dclaw-write": {
+      "repo": "dclaw-write",
+      "human_commits_7d": 2,
+      "last_human_commit": {
+        "sha": "e7659b0",
+        "date": "2026-05-09",
+        "author": "t4tarzan",
+        "msg": "feat: add domain-specific v1.2 feature roadmap (P0/P1/P2)"
+      },
+      "contributors_7d": [
+        {
+          "login": "t4tarzan",
+          "commits": 2
+        }
+      ],
+      "open_prs": 0,
+      "open_pr_titles": [],
+      "last_workflow": {
+        "name": "CI",
+        "conclusion": "success",
+        "branch": "main",
+        "at": "2026-05-15"
+      },
+      "has_claude_yml": false,
+      "workflow_files": [
+        "ci.yml"
+      ],
+      "agents_md_unfilled": true
+    }
+  }
+}

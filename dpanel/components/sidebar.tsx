@@ -12,6 +12,7 @@ import {
   LayoutGrid,
   Wrench,
   ArrowLeft,
+  Activity,
 } from "lucide-react";
 import { useState } from "react";
 import { apps } from "@/lib/apps";
@@ -107,6 +108,13 @@ export function Sidebar({ onNavigate }: SidebarProps) {
             icon={Search}
             label="Search"
             active={pathname === "/docs/search"}
+            onClick={onNavigate}
+          />
+          <NavItem
+            href="/cluster-status"
+            icon={Activity}
+            label="Cluster Status"
+            active={pathname === "/cluster-status"}
             onClick={onNavigate}
           />
         </div>
